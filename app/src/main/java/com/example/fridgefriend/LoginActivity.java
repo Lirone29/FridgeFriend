@@ -11,13 +11,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private static final int REQUEST_SIGNUP = 1;
+
     private EditText editTextName;
     private EditText editTextPassword;
     private TextView textViewInfo;
     private Button buttonLogin;
+    TextView _registerLink;
     private int attemptCounter = 5 ;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         textViewInfo = (TextView) findViewById(R.id.textViewInfo);
         buttonLogin = (Button) findViewById(R.id.buttonLogin);
+        _registerLink = (TextView) findViewById(R.id.registerViewID);
 
         textViewInfo.setText("Attempt: 5");
 
@@ -35,6 +37,18 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 validate(editTextName.getText().toString(),editTextPassword.getText().toString());
+            }
+        });
+
+        _registerLink.setEnabled(true);
+        _registerLink.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // Start the Register Activity
+                Intent intent = new Intent(getApplicationContext(), RegistryActivity.class);
+                startActivityForResult(intent, REQUEST_SIGNUP);
+                finish();
             }
         });
 
