@@ -27,4 +27,8 @@ public class Product {
     public int getProductId() {
         return productId;
     }
+
+    //@SerializedName("body")
+    //private String text;
+
 }
