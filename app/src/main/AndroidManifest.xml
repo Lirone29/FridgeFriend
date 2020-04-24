@@ -24,6 +24,9 @@
         <activity
             android:name=".RegistryActivity"
             android:label="Registry Activity"></activity>
+        <activity
+            android:name=".FridgeActivity"
+            android:label="Fridge Activity"></activity>
     </application>
 
 </manifest>
