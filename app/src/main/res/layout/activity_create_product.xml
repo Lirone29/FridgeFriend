@@ -1,6 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/Product Information:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:text="Product Information:"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/productNameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:ems="5"
+            android:text="Name:"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/productName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_toRightOf="@id/productNameLabel"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name" />
+
+        <TextView
+            android:id="@+id/expirationDateLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="46dp"
+            android:layout_below="@id/productNameLabel"
+            android:layout_marginBottom="6dp"
+            android:ems="5"
+            android:text="Expiration Date:"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/expirationDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/productName"
+            android:layout_marginTop="6dp"
+            android:layout_toRightOf="@id/expirationDateLabel"
+            android:ems="10"
+            android:inputType="date|textPersonName"
+            android:text="20/22/1020" />
+
+        <TextView
+            android:id="@+id/weightLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_below="@id/expirationDateLabel"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:ems="5"
+            android:text="Weight:"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/productWeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/expirationDate"
+            android:layout_marginTop="6dp"
+            android:layout_toRightOf="@id/weightLabel"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="weight GG" />
+
+        <TextView
+            android:id="@+id/productCaloriesLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_below="@id/weightLabel"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="12dp"
+            android:ems="5"
+            android:text="Calories:"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/productCalories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/productWeight"
+            android:layout_marginTop="6dp"
+            android:layout_toRightOf="@id/productCaloriesLabel"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Number of calories" />
+    </RelativeLayout>
 </LinearLayout>
