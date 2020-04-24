@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import retrofit2.Retrofit;
+
 public class LoginActivity extends AppCompatActivity {
 
     private static final int REQUEST_SIGNUP = 1;
@@ -19,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button buttonLogin;
     TextView _registerLink;
     private int attemptCounter = 5 ;
+    Retrofit retrofit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
