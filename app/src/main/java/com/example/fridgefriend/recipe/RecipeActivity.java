@@ -39,7 +39,6 @@ public class RecipeActivity extends AppCompatActivity {
 
        getRecipes();
 
-      // createPostRecipe();
 
     }
 
@@ -88,35 +87,6 @@ public class RecipeActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    private void createPostRecipe(){
-
-        PostRecipe postRecipe = new PostRecipe("Jablko", "jedz") ;
-
-
-        Call<PostRecipe> call = recipeApi.createPost("82dae18b776fe80c6d299b59627249f1ef57fcf4", postRecipe);
-
-        call.enqueue(new Callback<PostRecipe>() {
-            @Override
-            public void onResponse(Call<PostRecipe> call, Response<PostRecipe> response) {
-                if (!response.isSuccessful()) {
-                    textViewResult.setText("Code" + response.code());
-                    return;
-                }
-
-                PostRecipe postResponse = response.body();
-
-                System.out.println("Code" + response.code() + "\n" + postResponse.getName());
-
-
-            }
-
-            @Override
-            public void onFailure(Call<PostRecipe> call, Throwable t) {
-                textViewResult.setText(t.getMessage());
-            }
-        });
     }
 
 }

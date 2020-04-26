@@ -7,6 +7,7 @@ import android.os.StrictMode;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fridgefriend.recipe.AddRecipeActivity;
 import com.example.fridgefriend.recipe.RecipeActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
@@ -28,7 +29,7 @@ public class WelcomeActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(WelcomeActivity.this, RecipeActivity.class);
+                Intent intent = new Intent(WelcomeActivity.this, AddRecipeActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.xml.fade_in,R.xml.fade_out);
                 finish();
