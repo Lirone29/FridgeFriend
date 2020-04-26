@@ -1,6 +1,7 @@
 package com.example.fridgefriend.recipe;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Recipe implements Serializable {
 
@@ -12,7 +13,7 @@ public class Recipe implements Serializable {
 
     private String photoUrl;
 
-    private String products;
+    private List<String> products;
 
     public String getName() {
         return name;
@@ -26,7 +27,11 @@ public class Recipe implements Serializable {
         return photoUrl;
     }
 
-    public String getProducts() {
+    public int getId() {
+        return id;
+    }
+
+    public List<String> getProducts() {
         return products;
     }
 
@@ -50,7 +55,4 @@ public class Recipe implements Serializable {
         this.photoUrl = photoUrl;
     }
 
-    public void setProducts(String products) {
-        this.products = products;
-    }
 }

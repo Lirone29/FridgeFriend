@@ -16,6 +16,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RecipeActivity extends AppCompatActivity {
 
     private TextView textViewResult;
+    Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl("http://mtx.pmlabs.net:8888/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
+
+    final RecipeApi recipeApi = retrofit.create(RecipeApi.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +31,39 @@ public class RecipeActivity extends AppCompatActivity {
 
         textViewResult = findViewById(R.id.text_view_result);
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://mtx.pmlabs.net:8888/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
 
-        final RecipeApi recipeApi = retrofit.create(RecipeApi.class);
+        //GetRecipeById();
+
+        GetRecipes();
+    }
+
+    void GetRecipes() {
+
+        Call<String> call = recipeApi.getRecipes();
+
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String>all, Response<String> response) {
+                if (!response.isSuccessful()) {
+                    textViewResult.setText("Code" + response.code());
+                    return;
+                }
+
+                System.out.println("Karolina");
+                System.out.println(response.body());
+
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                textViewResult.setText(t.getMessage());
+                System.out.println("Karolinaaaaaa");
+            }
+        });
+
+    }
+
+    void GetRecipeById(){
 
         Call<Recipe> call = recipeApi.getRecipe();
 
@@ -53,5 +86,6 @@ public class RecipeActivity extends AppCompatActivity {
                 System.out.println("Karolinaaaaaa");
             }
         });
+
     }
 }
