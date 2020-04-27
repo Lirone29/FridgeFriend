@@ -7,7 +7,11 @@ import android.widget.TextView;
 
 import com.example.fridgefriend.R;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,8 +39,6 @@ public class RecipeActivity extends AppCompatActivity {
 
         recipeApi = retrofit.create(RecipeApi.class);
 
-        //getRecipeById(1);
-
        getRecipes();
 
 
@@ -56,6 +58,7 @@ public class RecipeActivity extends AppCompatActivity {
 
                 System.out.println(response.body());
 
+
             }
 
             @Override
@@ -66,27 +69,5 @@ public class RecipeActivity extends AppCompatActivity {
 
     }
 
-    void getRecipeById(int id){
-
-        Call<Recipe> call = recipeApi.getRecipe(id);
-
-        call.enqueue(new Callback<Recipe>() {
-            @Override
-            public void onResponse(Call<Recipe>call, Response<Recipe> response) {
-                if (!response.isSuccessful()) {
-                    textViewResult.setText("Code" + response.code());
-                    return;
-                }
-                System.out.println(response.body().getName());
-
-            }
-
-            @Override
-            public void onFailure(Call<Recipe> call, Throwable t) {
-                textViewResult.setText(t.getMessage());
-            }
-        });
-
-    }
 
 }
