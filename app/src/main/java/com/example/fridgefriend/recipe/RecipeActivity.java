@@ -7,8 +7,10 @@ import android.widget.TextView;
 
 import com.example.fridgefriend.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONStringer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -58,7 +60,6 @@ public class RecipeActivity extends AppCompatActivity {
 
                 System.out.println(response.body());
 
-
             }
 
             @Override
@@ -68,6 +69,7 @@ public class RecipeActivity extends AppCompatActivity {
         });
 
     }
+
 
 
 }

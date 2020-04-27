@@ -48,4 +48,8 @@
         android:layout_marginBottom="164dp"
         android:text="Add Recipe" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 </RelativeLayout>

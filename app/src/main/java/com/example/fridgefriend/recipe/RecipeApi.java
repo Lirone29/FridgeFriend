@@ -21,8 +21,8 @@ public interface RecipeApi {
     @GET("api/recipe/{id}")
     Call <Recipe> getRecipe(@Path("id") int postId );
 
-    @GET("api/recipes/?page=1")
-    C<String> getRecipes() ;
+    @GET("api/recipes")
+    Call<String> getRecipes() ;
 
     @Headers({
             "Content-Type: application/json",

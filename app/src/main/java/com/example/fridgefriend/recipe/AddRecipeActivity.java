@@ -23,6 +23,9 @@ public class AddRecipeActivity extends AppCompatActivity {
 
     private RecipeApi recipeApi;
 
+    String recipeName;
+    String recipeDescription;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,15 +48,27 @@ public class AddRecipeActivity extends AppCompatActivity {
         buttonAddRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createPostRecipe();
+                recipeName = editRecipeName.getText().toString();
+                recipeDescription = editDescription.getText().toString();
+
+                if(recipeName.length()==0 && recipeDescription.length()==0) {
+                    editRecipeName.requestFocus();
+                    editRecipeName.setError("FIELD CANNOT BE EMPTY");
+
+                    editDescription.requestFocus();
+                    editDescription.setError("FIELD CANNOT BE EMPTY");
+                }
+                else {
+                    createPostRecipe();
+                }
+
             }
         });
     }
 
-
     private void createPostRecipe(){
 
-        PostRecipe postRecipe = new PostRecipe(editRecipeName.getText().toString(), editDescription.getText().toString()) ;
+        PostRecipe postRecipe = new PostRecipe(recipeName,recipeDescription) ;
 
 
         Call<PostRecipe> call = recipeApi.createPost("82dae18b776fe80c6d299b59627249f1ef57fcf4", postRecipe);
@@ -86,6 +101,18 @@ public class AddRecipeActivity extends AppCompatActivity {
         Dialog dialog = new Dialog();
         dialog.show(getSupportFragmentManager(),"dialog");
     }
+
+    private boolean validateRecipeName (){
+        String nameInput = editRecipeName.getText().toString().trim();
+
+        if(nameInput.isEmpty()){
+            System.out.println("empty");
+            return false;
+        }
+        else
+            return true;
+    }
+
 
 
 }
