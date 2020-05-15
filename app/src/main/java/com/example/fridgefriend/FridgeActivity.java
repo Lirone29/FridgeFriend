@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fridgefriend.Data.IFridgeProduct;
-import com.example.fridgefriend.Data.Product;
+import com.example.fridgefriend.Product.Product;
 
 import java.util.List;
 
@@ -26,10 +26,14 @@ public class FridgeActivity extends AppCompatActivity {
     TextView _tmpTextView;
     private Button _getProductButton;
 
-    Retrofit retrofit;
     IFridgeProduct iFridgeProduct;
     Call<List<Product>> call;
     List<Product> responseList;
+
+    Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl(baseUrl)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +56,12 @@ public class FridgeActivity extends AppCompatActivity {
             }
         });
 
+        /*
         retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
+    */
        iFridgeProduct = retrofit.create(IFridgeProduct.class);
 
         call = iFridgeProduct.getFridgeProducts();

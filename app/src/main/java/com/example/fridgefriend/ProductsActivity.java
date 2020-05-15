@@ -4,8 +4,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.fridgefriend.Data.IProduct;
-import com.example.fridgefriend.Data.Product;
+import com.example.fridgefriend.Product.IProduct;
+import com.example.fridgefriend.Product.Product;
 
 import java.util.List;
 

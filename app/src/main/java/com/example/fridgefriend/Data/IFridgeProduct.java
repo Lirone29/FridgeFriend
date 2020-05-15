@@ -1,5 +1,7 @@
 package com.example.fridgefriend.Data;
 
+import com.example.fridgefriend.Product.Product;
+
 import java.util.List;
 
 import retrofit2.Call;
