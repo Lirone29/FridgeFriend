@@ -2,18 +2,18 @@ package com.example.fridgefriend.recipe;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.fridgefriend.R;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.JSONStringer;
-
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,6 +25,12 @@ public class RecipeActivity extends AppCompatActivity {
 
     private TextView textViewResult;
     private RecipeApi recipeApi;
+    private ArrayList<Recipes> productsArrayList;
+    private ListView listView;
+    private ListViewAdapter listViewAdapter;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +38,9 @@ public class RecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
 
-        textViewResult = findViewById(R.id.text_view_result);
+        //textViewResult = findViewById(R.id.text_view_result);
+        listView = (ListView)findViewById(R.id.listView);
+
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://mtx.pmlabs.net:8888/")
@@ -41,6 +49,7 @@ public class RecipeActivity extends AppCompatActivity {
 
         recipeApi = retrofit.create(RecipeApi.class);
 
+
        getRecipes();
 
 
@@ -48,23 +57,24 @@ public class RecipeActivity extends AppCompatActivity {
 
     void getRecipes() {
 
-        Call<String> call = recipeApi.getRecipes();
+        Call<ArrayList<Recipes>> call = recipeApi.getRecipes();
 
-        call.enqueue(new Callback<String>() {
+        call.enqueue(new Callback<ArrayList<Recipes>>() {
             @Override
-            public void onResponse(Call<String>all, Response<String>response) {
+            public void onResponse(Call<ArrayList<Recipes>>all, Response<ArrayList<Recipes>>response) {
                 if (!response.isSuccessful()) {
-                    textViewResult.setText("Code" + response.code());
+                 //   textViewResult.setText("Code" + response.code());
                     return;
                 }
 
-                System.out.println(response.body());
-
+                productsArrayList = response.body();
+                listViewAdapter = new ListViewAdapter( RecipeActivity.this, productsArrayList);
+                listView.setAdapter(listViewAdapter);
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                textViewResult.setText(t.getMessage());
+            public void onFailure(Call<ArrayList<Recipes>> call, Throwable t) {
+//                textViewResult.setText(t.getMessage());
             }
         });
 

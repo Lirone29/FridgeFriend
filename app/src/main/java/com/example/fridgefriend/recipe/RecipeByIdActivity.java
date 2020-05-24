@@ -21,7 +21,7 @@ public class RecipeByIdActivity extends AppCompatActivity {
     private TextView recipeDescription;
     private TextView products;
 
-    @Override
+   //@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_by_id);
@@ -37,11 +37,9 @@ public class RecipeByIdActivity extends AppCompatActivity {
                 .build();
 
         recipeApi = retrofit.create(RecipeApi.class);
+        //getRecipeById();
 
-
-        getRecipeById(1);
     }
-
 
 
     void getRecipeById(int id){

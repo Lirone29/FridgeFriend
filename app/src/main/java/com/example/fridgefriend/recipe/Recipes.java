@@ -1,6 +1,12 @@
 package com.example.fridgefriend.recipe;
 
+import java.util.ArrayList;
+
 public class Recipes {
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     private int id;
 

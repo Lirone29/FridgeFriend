@@ -5,6 +5,8 @@ import android.accessibilityservice.GestureDescription;
 import org.json.JSONObject;
 
 import java.nio.file.attribute.PosixFileAttributes;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -21,8 +23,8 @@ public interface RecipeApi {
     @GET("api/recipe/{id}")
     Call <Recipe> getRecipe(@Path("id") int postId );
 
-    @GET("api/recipes")
-    Call<String> getRecipes() ;
+    @GET("api/recipes/?page=1")
+    Call<ArrayList<Recipes>>  getRecipes() ;
 
     @Headers({
             "Content-Type: application/json",

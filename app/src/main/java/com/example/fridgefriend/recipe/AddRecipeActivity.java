@@ -68,6 +68,8 @@ public class AddRecipeActivity extends AppCompatActivity {
 
     private void createPostRecipe(){
 
+        System.out.println(recipeName);
+
         PostRecipe postRecipe = new PostRecipe(recipeName,recipeDescription) ;
 
 
