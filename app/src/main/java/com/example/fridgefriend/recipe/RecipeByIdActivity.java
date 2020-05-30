@@ -21,6 +21,7 @@ public class RecipeByIdActivity extends AppCompatActivity {
     private TextView recipeName;
     private TextView recipeDescription;
     private TextView products;
+    int userId;
 
    //@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +42,14 @@ public class RecipeByIdActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
+        Bundle bundle = getIntent().getExtras();
+        if(bundle!= null){
+            userId = bundle.getInt("id");
+        }
+
+
         recipeApi = retrofit.create(RecipeApi.class);
-        //getRecipeById();
+        getRecipeById(userId);
 
     }
 
