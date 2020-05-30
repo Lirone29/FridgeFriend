@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import retrofit2.Retrofit;
+
 public class RegistryActivity extends AppCompatActivity {
 
     private static final String TAG = "RegistryActivity";
@@ -22,6 +24,8 @@ public class RegistryActivity extends AppCompatActivity {
     EditText _passwordText;
     Button _returnButton;
     Button _registerButton;
+
+    Retrofit retrofit;
 
     boolean loginExistBoolean = false;
 
