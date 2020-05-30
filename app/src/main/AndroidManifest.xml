@@ -11,6 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".recipe.RecipeByIdActivity"></activity>
+        <activity android:name=".recipe.AddRecipeActivity" />
+        <activity android:name=".recipe.RecipeActivity" />
         <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,9 +23,10 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:label="Login Activity"></activity>
+            android:label="Login Activity" />
         <activity
             android:name=".RegistryActivity"
+
             android:label="Registry Activity"></activity>
         <activity
             android:name=".FridgeActivity"
@@ -33,6 +37,7 @@
         <activity
             android:name=".Product.CreateProductActivity"
             android:label="Create Product Activity"></activity>
+
     </application>
 
 </manifest>
