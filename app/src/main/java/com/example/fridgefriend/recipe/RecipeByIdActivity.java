@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.fridgefriend.R;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -29,6 +30,10 @@ public class RecipeByIdActivity extends AppCompatActivity {
         recipeName = (TextView) findViewById(R.id.recipeName);
         recipeDescription = (TextView) findViewById(R.id.decsriptionRecipe) ;
         products = (TextView) findViewById(R.id.productInRecipe) ;
+
+        Intent intent = getIntent();
+        String receivedName =  intent.getStringExtra("name");
+        recipeName.setText(receivedName);
 
 
         Retrofit retrofit = new Retrofit.Builder()

@@ -69,7 +69,7 @@ public class ListViewAdapter extends BaseAdapter {
 
     private void openRecipeActivity(Recipes recipes){
         Intent intent = new Intent(context, RecipeByIdActivity.class);
-        intent.putExtra("recipes", recipes.getName());
+        intent.putExtra("name", recipes.getName());
         context.startActivity(intent);
 
     }
