@@ -10,16 +10,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fridgefriend.Model.Recipe;
+import com.example.fridgefriend.Model.Recipes;
 import com.example.fridgefriend.R;
 
 import java.util.ArrayList;
 
 public class ListViewAdapter extends BaseAdapter {
 
-    ArrayList<Recipe.Recipes> recipesArrayList;
+    ArrayList<Recipes> recipesArrayList;
     Context context;
 
-    public ListViewAdapter(Context context, ArrayList<Recipe.Recipes> recipesArrayList) {
+    public ListViewAdapter(Context context, ArrayList<Recipes> recipesArrayList) {
         super();
         this.context = context;
         this.recipesArrayList = recipesArrayList;
@@ -47,7 +48,7 @@ public class ListViewAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.layout_list_view_row_items, parent, false);
 
         }
-        final Recipe.Recipes recipes = (Recipe.Recipes) getItem(position);
+        final Recipes recipes = (Recipes) getItem(position);
         TextView textViewItemName = (TextView)
                 convertView.findViewById(R.id.text_view_item_name);
         textViewItemName.setText(recipes.getName());
@@ -66,7 +67,7 @@ public class ListViewAdapter extends BaseAdapter {
         return convertView;
     }
 
-    private void openRecipeActivity(Recipe.Recipes recipes){
+    private void openRecipeActivity(Recipes recipes){
         Intent intent = new Intent(context, RecipeByIdActivity.class);
         intent.putExtra("id", recipes.getId());
         context.startActivity(intent);

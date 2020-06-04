@@ -1,4 +1,4 @@
-package com.example.fridgefriend.Product;
+package com.example.fridgefriend.Model;
 
 public class Product {
 

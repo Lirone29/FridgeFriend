@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fridgefriend.Data.IFridgeProduct;
-import com.example.fridgefriend.Product.Product;
+import com.example.fridgefriend.Model.Product;
 
 import java.util.List;
 

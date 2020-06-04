@@ -1,4 +1,4 @@
-package com.example.fridgefriend;
+package com.example.fridgefriend.Authorization;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.fridgefriend.R;
+import com.example.fridgefriend.RegistryActivity;
 
 import retrofit2.Retrofit;
 

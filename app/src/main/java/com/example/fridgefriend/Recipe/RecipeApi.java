@@ -1,6 +1,7 @@
 package com.example.fridgefriend.Recipe;
 
 import com.example.fridgefriend.Model.Recipe;
+import com.example.fridgefriend.Model.Recipes;
 
 import java.util.ArrayList;
 
@@ -18,7 +19,7 @@ public interface RecipeApi {
     Call <Recipe> getRecipe(@Path("id") int postId );
 
     @GET("api/recipes/?page=1")
-    Call<ArrayList<Recipe.Recipes>>  getRecipes() ;
+    Call<ArrayList<Recipes>>  getRecipes() ;
 
     @Headers({
             "Content-Type: application/json",

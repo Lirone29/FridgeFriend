@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fridgefriend.Product.IProduct;
-import com.example.fridgefriend.Product.Product;
+import com.example.fridgefriend.Model.Product;
 
 import java.util.List;
 

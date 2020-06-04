@@ -1,4 +1,4 @@
-package com.example.fridgefriend;
+package com.example.fridgefriend.Authorization;
 
 public class PostLogin {
 
