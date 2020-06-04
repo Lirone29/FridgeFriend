@@ -8,14 +8,19 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fridgefriend.recipe.AddRecipeActivity;
+import com.example.fridgefriend.recipe.RecipeActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+    private String urlString = "http://mtx.pmlabs.net:8888/";
 
     Button _fridgeButton;
     Button _recipesButton;
     Button _profileButton;
     Button _archieveShoppinListButton;
-    Button _createShoppinListButton;
+    FloatingActionButton _createShoppinListButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,26 +31,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        _fridgeButton = findViewById(R.id.registerButton);
+        _fridgeButton = findViewById(R.id.fridgeButton);
         _recipesButton = findViewById(R.id.recipeButton);
         _profileButton = findViewById(R.id.profileButton);
         _archieveShoppinListButton = findViewById(R.id.shoppingArchiveButton);
-        _createShoppinListButton = findViewById(R.id.createShoppingListButton);
+        _createShoppinListButton = (FloatingActionButton) findViewById(R.id.createShoppingListButton);
 
         _fridgeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), FridgeActivity.class);
                 startActivityForResult(intent, 1);
-                finish();
+                //finish();
             }
         });
         _recipesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Intent intent = new Intent(getApplicationContext(), FridgeActivity.class);
-                //startActivityForResult(intent, 1);
-                finish();
+                Intent intent = new Intent(getApplicationContext(),  RecipeActivity.class);
+                startActivityForResult(intent, 1);
+                //finish();
             }
         });
         _profileButton.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Intent intent = new Intent(getApplicationContext(), FridgeActivity.class);
                 //startActivityForResult(intent, 1);
-                finish();
+                //finish();
             }
         });
         _archieveShoppinListButton.setOnClickListener(new View.OnClickListener() {
@@ -61,15 +66,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Intent intent = new Intent(getApplicationContext(), FridgeActivity.class);
                 //startActivityForResult(intent, 1);
-                finish();
+                //finish();
             }
         });
         _createShoppinListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Intent intent = new Intent(getApplicationContext(), FridgeActivity.class);
-                // startActivityForResult(intent, 1);
-                finish();
+                //Intent intent = new Intent(getApplicationContext(), FridgeActivity.class);
+                //startActivityForResult(intent, 1);
+                //finish();
             }
         });
 

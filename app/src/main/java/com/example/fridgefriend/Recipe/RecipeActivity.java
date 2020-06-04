@@ -37,21 +37,13 @@ public class RecipeActivity extends AppCompatActivity {
         //textViewResult = findViewById(R.id.text_view_result);
         listView = (ListView)findViewById(R.id.listView);
 
-
-
-
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://mtx.pmlabs.net:8888/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         recipeApi = retrofit.create(RecipeApi.class);
-
-
        getRecipes();
-
-
     }
 
     void getRecipes() {

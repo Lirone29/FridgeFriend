@@ -42,7 +42,11 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                validate(editTextName.getText().toString(),editTextPassword.getText().toString());
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivityForResult(intent, REQUEST_SIGNUP);
+                finish();
+
+               // validate(editTextName.getText().toString(),editTextPassword.getText().toString());
             }
         });
 
@@ -75,6 +79,11 @@ public class LoginActivity extends AppCompatActivity {
                 buttonLogin.setEnabled(false);
             }
         }*/
+
+
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivityForResult(intent, 2);
+        finish();
 
     }
 }

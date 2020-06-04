@@ -20,7 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CreateProductActivity extends AppCompatActivity {
 
-    String baseUrl = "http://127.0.0.1:8000/api/";
+    String baseUrl = "http://mtx.pmlabs.net:8888/";
 
     EditText _name;
     EditText _weight;
@@ -80,8 +80,8 @@ public class CreateProductActivity extends AppCompatActivity {
 
         PostProduct postProduct = new PostProduct(name, weight, calories, dateOfExpiration);
 
+
         Call<PostProduct> call = productApi.createPost("82dae18b776fe80c6d299b59627249f1ef57fcf4", postProduct);
-        //IProduct("82dae18b776fe80c6d299b59627249f1ef57fcf4", postRecipe);
 
         call.enqueue(new Callback<PostProduct>() {
             @Override
@@ -106,8 +106,6 @@ public class CreateProductActivity extends AppCompatActivity {
         });
 
     }
-
-
 
     private void openDialog() {
         Dialog dialog = new Dialog();

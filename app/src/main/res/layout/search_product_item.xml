@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
     <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:clickable="true"
         app:cardCornerRadius="6dp"
-        app:cardElevation="6dp">>
+        app:cardElevation="6dp">
+
         <RelativeLayout
             android:id="@+id/searchProductContentLayoutId"
             android:layout_width="match_parent"
@@ -48,7 +47,7 @@
                 android:layout_marginBottom="6dp">
 
                 <TextView
-                    android:id="@+id/productExpirationDateLabel"
+                    android:id="@+id/searchProductExpirationDateLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
@@ -59,31 +58,31 @@
                     android:textSize="15sp" />
 
                 <TextView
-                    android:id="@+id/expirationDateText"
+                    android:id="@+id/searchExpirationDateText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="10dp"
-                    android:layout_toRightOf="@id/productExpirationDateLabel"
+                    android:layout_toRightOf="@id/searchProductExpirationDateLabel"
                     android:padding="1dp"
                     android:text="Date"
                     android:textSize="15sp" />
 
                 <TextView
-                    android:id="@+id/weight"
+                    android:id="@+id/searchWeight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/productExpirationDateLabel"
+                    android:layout_below="@id/searchProductExpirationDateLabel"
                     android:layout_marginStart="12dp"
                     android:layout_marginEnd="12dp"
                     android:text="Weight:" />
 
                 <TextView
-                    android:id="@+id/calories"
+                    android:id="@+id/searchCalories"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/weight"
+                    android:layout_below="@id/searchWeight"
                     android:layout_marginStart="12dp"
                     android:layout_marginEnd="12dp"
                     android:text="Calories:" />
@@ -92,5 +91,3 @@
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
-
-</LinearLayout>
