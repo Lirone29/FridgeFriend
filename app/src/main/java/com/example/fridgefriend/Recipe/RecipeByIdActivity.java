@@ -1,12 +1,13 @@
-package com.example.fridgefriend.recipe;
+package com.example.fridgefriend.Recipe;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.fridgefriend.Model.Recipe;
 import com.example.fridgefriend.R;
 
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import retrofit2.Call;

@@ -1,19 +1,15 @@
-package com.example.fridgefriend.recipe;
+package com.example.fridgefriend.Recipe;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.fridgefriend.Model.Recipe;
 import com.example.fridgefriend.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,7 +21,7 @@ public class RecipeActivity extends AppCompatActivity {
 
     private TextView textViewResult;
     private RecipeApi recipeApi;
-    private ArrayList<Recipes> productsArrayList;
+    private ArrayList<Recipe.Recipes> productsArrayList;
     private ListView listView;
     private ListViewAdapter listViewAdapter;
 
@@ -60,11 +56,11 @@ public class RecipeActivity extends AppCompatActivity {
 
     void getRecipes() {
 
-        Call<ArrayList<Recipes>> call = recipeApi.getRecipes();
+        Call<ArrayList<Recipe.Recipes>> call = recipeApi.getRecipes();
 
-        call.enqueue(new Callback<ArrayList<Recipes>>() {
+        call.enqueue(new Callback<ArrayList<Recipe.Recipes>>() {
             @Override
-            public void onResponse(Call<ArrayList<Recipes>>all, Response<ArrayList<Recipes>>response) {
+            public void onResponse(Call<ArrayList<Recipe.Recipes>>all, Response<ArrayList<Recipe.Recipes>>response) {
                 if (!response.isSuccessful()) {
                  //   textViewResult.setText("Code" + response.code());
                     return;
@@ -76,7 +72,7 @@ public class RecipeActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ArrayList<Recipes>> call, Throwable t) {
+            public void onFailure(Call<ArrayList<Recipe.Recipes>> call, Throwable t) {
 //                textViewResult.setText(t.getMessage());
             }
         });

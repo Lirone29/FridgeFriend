@@ -1,6 +1,5 @@
-package com.example.fridgefriend.recipe;
+package com.example.fridgefriend.Recipe;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -10,17 +9,17 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.fridgefriend.MainActivity;
+import com.example.fridgefriend.Model.Recipe;
 import com.example.fridgefriend.R;
 
 import java.util.ArrayList;
 
 public class ListViewAdapter extends BaseAdapter {
 
-    ArrayList<Recipes> recipesArrayList;
+    ArrayList<Recipe.Recipes> recipesArrayList;
     Context context;
 
-    public ListViewAdapter(Context context, ArrayList<Recipes> recipesArrayList) {
+    public ListViewAdapter(Context context, ArrayList<Recipe.Recipes> recipesArrayList) {
         super();
         this.context = context;
         this.recipesArrayList = recipesArrayList;
@@ -48,7 +47,7 @@ public class ListViewAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.layout_list_view_row_items, parent, false);
 
         }
-        final Recipes recipes = (Recipes) getItem(position);
+        final Recipe.Recipes recipes = (Recipe.Recipes) getItem(position);
         TextView textViewItemName = (TextView)
                 convertView.findViewById(R.id.text_view_item_name);
         textViewItemName.setText(recipes.getName());
@@ -67,7 +66,7 @@ public class ListViewAdapter extends BaseAdapter {
         return convertView;
     }
 
-    private void openRecipeActivity(Recipes recipes){
+    private void openRecipeActivity(Recipe.Recipes recipes){
         Intent intent = new Intent(context, RecipeByIdActivity.class);
         intent.putExtra("id", recipes.getId());
         context.startActivity(intent);

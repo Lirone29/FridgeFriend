@@ -1,13 +1,8 @@
-package com.example.fridgefriend.recipe;
+package com.example.fridgefriend.Recipe;
 
-import android.accessibilityservice.GestureDescription;
+import com.example.fridgefriend.Model.Recipe;
 
-import org.json.JSONObject;
-
-import java.nio.file.attribute.PosixFileAttributes;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -16,7 +11,6 @@ import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-import retrofit2.http.QueryMap;
 
 public interface RecipeApi {
 
@@ -24,7 +18,7 @@ public interface RecipeApi {
     Call <Recipe> getRecipe(@Path("id") int postId );
 
     @GET("api/recipes/?page=1")
-    Call<ArrayList<Recipes>>  getRecipes() ;
+    Call<ArrayList<Recipe.Recipes>>  getRecipes() ;
 
     @Headers({
             "Content-Type: application/json",

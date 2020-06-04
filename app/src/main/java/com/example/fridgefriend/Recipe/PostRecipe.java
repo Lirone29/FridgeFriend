@@ -1,4 +1,4 @@
-package com.example.fridgefriend.recipe;
+package com.example.fridgefriend.Recipe;
 
 public class PostRecipe {
 

@@ -7,9 +7,7 @@ import android.os.StrictMode;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.fridgefriend.recipe.AddRecipeActivity;
-import com.example.fridgefriend.recipe.RecipeActivity;
-import com.example.fridgefriend.recipe.RecipeByIdActivity;
+import com.example.fridgefriend.Recipe.RecipeActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
     private static int TIME_OUT = 1500;
