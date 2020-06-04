@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fridgefriend.Model.Product;
 import com.example.fridgefriend.R;
 
 import java.util.ArrayList;

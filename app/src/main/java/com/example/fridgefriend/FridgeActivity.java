@@ -77,7 +77,7 @@ public class FridgeActivity extends AppCompatActivity {
 
                 for( Product post:  responseList){
                     String content = "";
-                    content +="productID " + post.getProductId() + " \n ";
+                    content +="productID " + post.getId() + " \n ";
                     content += "name: " + post.getName() + "\n";
                     //_tmpTextView.append(content);
                 }

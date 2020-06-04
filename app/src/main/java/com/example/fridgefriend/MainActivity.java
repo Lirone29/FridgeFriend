@@ -8,8 +8,9 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.fridgefriend.recipe.AddRecipeActivity;
-import com.example.fridgefriend.recipe.RecipeActivity;
+import com.example.fridgefriend.Recipe.RecipeActivity;
+import com.example.fridgefriend.Recipe.AddRecipeActivity;
+import com.example.fridgefriend.Recipe.RecipeActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         _recipesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),  RecipeActivity.class);
+                Intent intent = new Intent(getApplicationContext(), RecipeActivity.class);
                 startActivityForResult(intent, 1);
                 //finish();
             }

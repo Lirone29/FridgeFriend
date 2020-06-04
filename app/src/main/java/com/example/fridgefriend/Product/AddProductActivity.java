@@ -14,7 +14,8 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.fridgefriend.ProductsActivity;
+import com.example.fridgefriend.Model.Product;
+import com.example.fridgefriend.Product.OnProductCardAdapterListener;
 import com.example.fridgefriend.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fridgefriend.MainActivity;
 import com.example.fridgefriend.R;
 import com.example.fridgefriend.RegistryActivity;
 
