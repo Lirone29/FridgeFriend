@@ -1,5 +1,6 @@
 package com.example.fridgefriend.Product;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fridgefriend.Data.Dialog;
+import com.example.fridgefriend.FridgeActivity;
+import com.example.fridgefriend.MainActivity;
 import com.example.fridgefriend.R;
 
 import retrofit2.Call;
@@ -29,6 +32,7 @@ public class CreateProductActivity extends AppCompatActivity {
     EditText _dateOfExpiration;
     EditText _calories;
     private Button _createButton;
+    private Button _returnButton;
 
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(baseUrl)
@@ -58,8 +62,8 @@ public class CreateProductActivity extends AppCompatActivity {
         _weight = findViewById(R.id.productWeight);
         _dateOfExpiration = findViewById(R.id.productExpirationDate);
         _calories = findViewById(R.id.productCalories);
-        _createButton = findViewById(R.id.createProductButton);
 
+        _createButton = findViewById(R.id.createProductButton);
         _createButton.setEnabled(true);
         _createButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +71,16 @@ public class CreateProductActivity extends AppCompatActivity {
                 createNewProduct();
             }
         });
+
+        _returnButton = findViewById(R.id.createProductReturnButton);
+        _returnButton.setEnabled(true);
+        _returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                returnButton();
+            }
+        });
+
         productApi = retrofit.create(IProduct.class);
 
     }
@@ -110,5 +124,12 @@ public class CreateProductActivity extends AppCompatActivity {
     private void openDialog() {
         Dialog dialog = new Dialog();
         dialog.show(getSupportFragmentManager(), "dialog");
+    }
+
+    private void returnButton(){
+        Intent intent = new Intent(getApplicationContext(), FridgeActivity.class);
+        intent.putExtra(TAG_TOKEN, TOKEN);
+        startActivityForResult(intent, 1);
+        finish();
     }
 }

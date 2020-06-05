@@ -28,7 +28,6 @@ public class FridgeActivity extends AppCompatActivity {
     private static final String TAG_TOKEN = "TOKEN";
     String TOKEN;
 
-    TextView _tmpTextView;
     private Button _addProductButton;
     private Button _createProductButton;
     private Button _returnButton;

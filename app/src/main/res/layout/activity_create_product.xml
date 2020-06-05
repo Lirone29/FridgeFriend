@@ -108,17 +108,31 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:text="Number of calories" />
+
+        <Button
+            android:id="@+id/createProductReturnButton"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/productCalories"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="20dp"
+            android:foregroundGravity="center"
+            android:gravity="clip_horizontal|center|center_horizontal"
+            android:text="Return" />
+
+        <Button
+            android:id="@+id/createProductButton"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/productCalories"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_toRightOf="@id/createProductReturnButton"
+            android:foregroundGravity="center"
+            android:gravity="center"
+            android:text="Create" />
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/createProductButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Create" />
-
-    <Button
-        android:id="@+id/createProductReturnButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Return" />
 </LinearLayout>
