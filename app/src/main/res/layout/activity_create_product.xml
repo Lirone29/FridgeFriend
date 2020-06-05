@@ -42,7 +42,7 @@
             android:text="Name" />
 
         <TextView
-            android:id="@+id/searchProductExpirationDateLabel"
+            android:id="@+id/searchProductExpirationDate"
             android:layout_width="wrap_content"
             android:layout_height="46dp"
             android:layout_below="@id/productNameLabel"
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/productName"
             android:layout_marginTop="6dp"
-            android:layout_toRightOf="@id/searchProductExpirationDateLabel"
+            android:layout_toRightOf="@id/searchProductExpirationDate"
             android:ems="10"
             android:inputType="date|textPersonName"
             android:text="20/22/1020" />
@@ -67,7 +67,7 @@
             android:id="@+id/productWeightLabel"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_below="@id/searchProductExpirationDateLabel"
+            android:layout_below="@id/searchProductExpirationDate"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
             android:ems="5"

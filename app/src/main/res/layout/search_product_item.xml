@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
     <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
@@ -13,21 +10,15 @@
         app:cardCornerRadius="6dp"
         app:cardElevation="6dp">
 
-        <RelativeLayout
-            android:id="@+id/searchProductContentLayoutId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:padding="8dp">
 
-            <LinearLayout
-                android:id="@+id/searchContentLayoutTitle"
-                android:background="?attr/selectableItemBackground"
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="6dp">
 
                 <TextView
                     android:id="@+id/searchProductName"
@@ -40,21 +31,12 @@
                     android:text="Product Name"
                     android:textSize="18sp"
                     android:textStyle="bold" />
-            </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/searchContentLayoutTitle"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginBottom="6dp">
 
                 <TextView
-                    android:id="@+id/searchProductExpirationDateLabel"
+                    android:id="@+id/searchProductExpirationDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/searchProductName"
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="10dp"
@@ -63,22 +45,10 @@
                     android:textSize="15sp" />
 
                 <TextView
-                    android:id="@+id/searchExpirationDateText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_toRightOf="@id/searchProductExpirationDateLabel"
-                    android:padding="1dp"
-                    android:text="Date"
-                    android:textSize="15sp" />
-
-                <TextView
                     android:id="@+id/searchWeight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/searchProductExpirationDateLabel"
+                    android:layout_below="@id/searchProductExpirationDate"
                     android:layout_marginStart="12dp"
                     android:layout_marginEnd="12dp"
                     android:text="Weight:" />
@@ -94,6 +64,4 @@
 
             </RelativeLayout>
 
-        </RelativeLayout>
     </androidx.cardview.widget.CardView>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>

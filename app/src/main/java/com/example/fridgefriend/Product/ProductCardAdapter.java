@@ -75,7 +75,7 @@ public class ProductCardAdapter extends RecyclerView.Adapter<ProductCardAdapter.
             _productName = itemView.findViewById(R.id.searchProductName);
             _productWeight = itemView.findViewById(R.id.searchWeight);
             _productCalories = itemView.findViewById(R.id.searchCalories);
-            _productDaysToExpire = itemView.findViewById(R.id.searchExpirationDateText);
+            _productDaysToExpire = itemView.findViewById(R.id.searchProductExpirationDate);
         }
 
         public void bind(final Product item, final OnProductCardAdapterListener listener) {

@@ -26,7 +26,7 @@ public class FridgeActivity extends AppCompatActivity {
     private static final String TAG = "FridgeActivity";
     String baseUrl ="http://mtx.pmlabs.net:8888/";
     private static final String TAG_TOKEN = "TOKEN";
-    String TOKEN;
+    String TOKEN = "ca61a446656139a887c2ffff4b0401e8d1b85068";
 
     private Button _addProductButton;
     private Button _createProductButton;
@@ -72,7 +72,7 @@ public class FridgeActivity extends AppCompatActivity {
             }
         });
 
-        _returnButton =  (Button) findViewById(R.id.addProductReturnButton);
+        _returnButton =  (Button) findViewById(R.id.fridgeReturnButton);
         _returnButton.setEnabled(true);
         _returnButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -44,7 +44,9 @@
         <activity
             android:name=".Product.CreateProductActivity"
             android:label="Create Product Activity"></activity>
-
+        <activity
+            android:name=".Product.AddProductActivity"
+            android:label="Add Product Activity"></activity>
     </application>
 
 </manifest>

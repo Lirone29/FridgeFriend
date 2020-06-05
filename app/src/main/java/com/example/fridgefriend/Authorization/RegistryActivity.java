@@ -119,16 +119,16 @@ public class RegistryActivity extends AppCompatActivity {
         String password = _passwordText.getText().toString();
 
         //verifying login constrains
-        if (login.isEmpty() || login.length() < 3 || login.length() > 30) {
-            _loginText.setError("Between 3 and 30 alphanumeric characters");
+        if (login.isEmpty() || login.length() < 8 || login.length() > 30) {
+            _loginText.setError("Between 8 and 30 alphanumeric characters");
             valid = false;
         } else {
             _loginText.setError(null);
         }
 
         //verifying password constrains
-        if (password.isEmpty() || password.length() < 3 || password.length() > 30) {
-            _passwordText.setError("Between 3 and 30 alphanumeric characters");
+        if (password.isEmpty() || password.length() < 8 || password.length() > 30) {
+            _passwordText.setError("Between 8 and 30 alphanumeric characters");
             valid = false;
         } else {
             _passwordText.setError(null);

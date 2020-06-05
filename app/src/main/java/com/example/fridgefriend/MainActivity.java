@@ -18,7 +18,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static final String TAG_TOKEN = "TOKEN";
-    String TOKEN;
+    private static final int USER_ACTION = 3;
+    String TOKEN = "ca61a446656139a887c2ffff4b0401e8d1b85068";
 
     private String urlString = "http://mtx.pmlabs.net:8888/";
 
@@ -50,10 +51,10 @@ public class MainActivity extends AppCompatActivity {
         _fridgeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), AddProductActivity.class);
+                Intent intent = new Intent(getApplicationContext(), FridgeActivity.class);
                 intent.putExtra(TAG_TOKEN,TOKEN);
-                startActivityForResult(intent, 1);
-                //finish();
+                startActivityForResult(intent, 2);
+                finish();
             }
         });
 
@@ -62,8 +63,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), RecipeActivity.class);
                 intent.putExtra(TAG_TOKEN,TOKEN);
-                startActivityForResult(intent, 1);
-                //finish();
+                startActivityForResult(intent, USER_ACTION);
+                finish();
             }
         });
 
@@ -72,8 +73,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
                 intent.putExtra(TAG_TOKEN,TOKEN);
-                startActivityForResult(intent, 1);
-                //finish();
+                startActivityForResult(intent, USER_ACTION);
+                finish();
             }
         });
 

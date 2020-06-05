@@ -90,9 +90,9 @@ public class LoginActivity extends AppCompatActivity {
         }
 
 
-        Call<String> call = loginApi.getToken(userName, userPassword);
+        //Call<String> call = loginApi.getToken(userName, userPassword);
 
-        call.enqueue(new Callback<String>() {
+        /*call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
 
@@ -112,14 +112,15 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(Call<String> call, Throwable t) {
                 editTextName.setText(t.getMessage());
             }
-        });
+        });*/
 
 
     }
 
     public void openMenu(){
+        //String TOKEN = "ca61a446656139a887c2ffff4b0401e8d1b85068";
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        intent.putExtra(TAG_TOKEN, TOKEN);
+        intent.putExtra(TAG_TOKEN, "ca61a446656139a887c2ffff4b0401e8d1b85068");
         startActivityForResult(intent, 2);
         finish();
     }

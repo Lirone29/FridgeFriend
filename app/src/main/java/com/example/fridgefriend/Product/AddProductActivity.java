@@ -35,12 +35,9 @@ public class AddProductActivity extends AppCompatActivity {
     private static final String TAG_TOKEN = "TOKEN";
     String TOKEN;
 
-
     private String urlString = "http://mtx.pmlabs.net:8888/";
 
     //components
-    FloatingActionButton _addGroupButton;
-
     private SearchView _searchView;
     private RecyclerView _recyclerView;
     private TextView _searchProductTextView;
@@ -49,7 +46,6 @@ public class AddProductActivity extends AppCompatActivity {
 
     ProductCardAdapter  _recycleViewAdapter;
     RecyclerView.LayoutManager _recycleViewLayoutManager;
-
     ArrayList<Product> productsArrayList;
 
     Retrofit retrofit = new Retrofit.Builder()
@@ -58,7 +54,6 @@ public class AddProductActivity extends AppCompatActivity {
             .build();
 
     IProduct productApi = retrofit.create(IProduct.class);
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,12 +103,7 @@ public class AddProductActivity extends AppCompatActivity {
         _recycleViewAdapter = new ProductCardAdapter(productsArrayList, new OnProductCardAdapterListener() {
             @Override
             public void onItemClick(Product item) {
-
                 chooseProduct(item.getId());
-                //Intent intent = new Intent(getApplicationContext(), ProductsActivity.class);
-                //intent.putExtra(TAG_ID,0);
-                //startActivity(intent);
-                //finish();
             }
         });
 
