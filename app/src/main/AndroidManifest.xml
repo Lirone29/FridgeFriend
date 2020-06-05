@@ -27,12 +27,14 @@
             android:name=".Authorization.LoginActivity"
             android:label="Login Activity" />
         <activity
-            android:name=".RegistryActivity"
-
+            android:name=".Authorization.RegistryActivity"
             android:label="Registry Activity"></activity>
         <activity
             android:name=".FridgeActivity"
             android:label="Fridge Activity"></activity>
+        <activity
+            android:name=".Authorization.ProfileActivity"
+            android:label="Profile Activity"></activity>
         <activity
             android:name=".ProductsActivity"
             android:label="Product Activity"></activity>

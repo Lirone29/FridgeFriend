@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fridgefriend.FridgeActivity;
 import com.example.fridgefriend.Model.Product;
 import com.example.fridgefriend.Product.OnProductCardAdapterListener;
 import com.example.fridgefriend.R;
@@ -31,6 +32,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class AddProductActivity extends AppCompatActivity {
 
     private static final String TAG_ID = "id";
+    private static final String TAG_TOKEN = "TOKEN";
+    String TOKEN;
+
 
     private String urlString = "http://mtx.pmlabs.net:8888/";
 
@@ -38,10 +42,10 @@ public class AddProductActivity extends AppCompatActivity {
     FloatingActionButton _addGroupButton;
 
     private SearchView _searchView;
-    private RecyclerView _recyclerView;  //ListView
-   /// private ProductCardAdapter adapter;
+    private RecyclerView _recyclerView;
     private TextView _searchProductTextView;
     private Button _searchButton;
+    private Button _returnButton;
 
     ProductCardAdapter  _recycleViewAdapter;
     RecyclerView.LayoutManager _recycleViewLayoutManager;
@@ -60,6 +64,9 @@ public class AddProductActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null)
+            TOKEN = bundle.getString(TAG_TOKEN);
 
         productsArrayList = new ArrayList<Product>();
 
@@ -73,10 +80,18 @@ public class AddProductActivity extends AppCompatActivity {
         _searchButton = (Button) findViewById(R.id.searchButton);
         _searchButton.setEnabled(true);
         _searchButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 searchProduct();
+            }
+        });
+
+        _returnButton = (Button) findViewById(R.id.addProductReturnButton);
+        _returnButton.setEnabled(true);
+        _returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                returnButton();
             }
         });
 
@@ -94,7 +109,7 @@ public class AddProductActivity extends AppCompatActivity {
             @Override
             public void onItemClick(Product item) {
 
-                chooseProduct(0);
+                chooseProduct(item.getId());
                 //Intent intent = new Intent(getApplicationContext(), ProductsActivity.class);
                 //intent.putExtra(TAG_ID,0);
                 //startActivity(intent);
@@ -105,10 +120,6 @@ public class AddProductActivity extends AppCompatActivity {
         _recycleViewAdapter.notifyDataSetChanged();
         _recyclerView.setLayoutManager(_recycleViewLayoutManager);
         _recyclerView.setAdapter(_recycleViewAdapter);
-
-       // loadAllProducts();
-
-
 
     }
 
@@ -138,7 +149,6 @@ public class AddProductActivity extends AppCompatActivity {
     }
 
     public void getProductsById(int _id){
-
 
         Call<Product> call = productApi.getProductById(_id);
 
@@ -175,8 +185,8 @@ public class AddProductActivity extends AppCompatActivity {
 
         System.out.println("IN choose");
         //Intent intent = new Intent(getApplicationContext(), ProductsActivity.class);
-        //intent.putExtra(TAG_ID,_id);
-       //startActivity(intent);
+        //intent.putExtra(TAG_TOKEN,TOKEN);
+        //startActivity(intent);
         //finish();
 
     }
@@ -191,6 +201,14 @@ public class AddProductActivity extends AppCompatActivity {
                 getProductsById(i+1);
             }
         }
+
+    }
+
+    public void returnButton(){
+        Intent intent = new Intent(getApplicationContext(), FridgeActivity.class);
+        intent.putExtra(TAG_TOKEN,TOKEN);
+        startActivity(intent);
+        finish();
 
     }
 }

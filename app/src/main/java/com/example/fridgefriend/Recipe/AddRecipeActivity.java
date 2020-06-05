@@ -16,6 +16,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AddRecipeActivity extends AppCompatActivity {
 
+    private static final String TAG_TOKEN = "TOKEN";
+    String TOKEN;
 
     private EditText editRecipeName;
     private EditText editDescription;
@@ -31,6 +33,9 @@ public class AddRecipeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_recipe);
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null)
+            TOKEN = bundle.getString(TAG_TOKEN);
 
         editRecipeName = (EditText) findViewById(R.id.editRecipeName);
         editDescription= (EditText) findViewById(R.id.editDescription);

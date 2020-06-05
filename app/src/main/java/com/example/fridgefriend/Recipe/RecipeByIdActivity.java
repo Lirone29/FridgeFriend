@@ -18,6 +18,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RecipeByIdActivity extends AppCompatActivity {
 
+    private static final String TAG_TOKEN = "TOKEN";
+    String TOKEN;
+
     private RecipeApi recipeApi;
     private TextView recipeName;
     private TextView recipeDescription;
@@ -28,6 +31,11 @@ public class RecipeByIdActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_by_id);
+        Bundle bundle = getIntent().getExtras();
+        if(bundle!= null){
+            userId = bundle.getInt("id");
+            TOKEN = bundle.getString(TAG_TOKEN);
+        }
 
         recipeName = (TextView) findViewById(R.id.recipeName);
         recipeDescription = (TextView) findViewById(R.id.decsriptionRecipe) ;
@@ -42,11 +50,6 @@ public class RecipeByIdActivity extends AppCompatActivity {
                 .baseUrl("http://mtx.pmlabs.net:8888/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
-        Bundle bundle = getIntent().getExtras();
-        if(bundle!= null){
-            userId = bundle.getInt("id");
-        }
 
 
         recipeApi = retrofit.create(RecipeApi.class);

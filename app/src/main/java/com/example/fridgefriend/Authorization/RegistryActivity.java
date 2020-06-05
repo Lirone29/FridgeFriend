@@ -1,7 +1,8 @@
-package com.example.fridgefriend;
+package com.example.fridgefriend.Authorization;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,8 +11,14 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fridgefriend.Authorization.LoginActivity;
+import com.example.fridgefriend.Model.Product;
+import com.example.fridgefriend.R;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RegistryActivity extends AppCompatActivity {
 
@@ -24,9 +31,15 @@ public class RegistryActivity extends AppCompatActivity {
     Button _returnButton;
     Button _registerButton;
 
-    Retrofit retrofit;
-
     boolean loginExistBoolean = false;
+
+    private String urlString = "http://mtx.pmlabs.net:8888/";
+
+    Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl(urlString)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
+    LoginApi loginApi;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,12 +59,14 @@ public class RegistryActivity extends AppCompatActivity {
                 finish();
             }
         });
+
         _registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signUp();
             }
         });
+        loginApi =  retrofit.create(LoginApi.class);
     }
 
 
@@ -64,7 +79,34 @@ public class RegistryActivity extends AppCompatActivity {
         }
 
         //creating new user
-       // new CreateUser();
+        createUser(this._loginText.getText().toString(), this._passwordText.getText().toString());
+    }
+
+    public void createUser(String username, String password){
+
+        Call<String> call = loginApi.createUser(username, password);
+
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+
+                if (!response.isSuccessful()) {
+                    _loginText.setText("Code: " + response.code());
+                    return;
+                }
+
+                String product = response.body();
+
+                //Log.d("All Products: ", productsArrayList.get(0).getName());
+
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                _loginText.setText(t.getMessage());
+            }
+        });
+
         onSignUpSuccess();
     }
 
@@ -77,11 +119,19 @@ public class RegistryActivity extends AppCompatActivity {
         String password = _passwordText.getText().toString();
 
         //verifying login constrains
-        if (login.isEmpty() || login.length() < 5) {
-            _loginText.setError("At least 5 characters");
+        if (login.isEmpty() || login.length() < 3 || login.length() > 30) {
+            _loginText.setError("Between 3 and 30 alphanumeric characters");
             valid = false;
         } else {
             _loginText.setError(null);
+        }
+
+        //verifying password constrains
+        if (password.isEmpty() || password.length() < 3 || password.length() > 30) {
+            _passwordText.setError("Between 3 and 30 alphanumeric characters");
+            valid = false;
+        } else {
+            _passwordText.setError(null);
         }
 
         //verifying login uniques in database
@@ -92,13 +142,7 @@ public class RegistryActivity extends AppCompatActivity {
             }
         }*/
 
-        //verifying password constrains
-        if (password.isEmpty() || password.length() < 5 || password.length() > 20) {
-            _passwordText.setError("Between 5 and 20 alphanumeric characters");
-            valid = false;
-        } else {
-            _passwordText.setError(null);
-        }
+
         return valid;
     }
 

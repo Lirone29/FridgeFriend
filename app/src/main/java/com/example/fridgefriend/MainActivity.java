@@ -8,6 +8,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fridgefriend.Authorization.ProfileActivity;
+import com.example.fridgefriend.Product.AddProductActivity;
 import com.example.fridgefriend.Recipe.RecipeActivity;
 import com.example.fridgefriend.Recipe.AddRecipeActivity;
 import com.example.fridgefriend.Recipe.RecipeActivity;
@@ -15,6 +17,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+    private static final String TAG_TOKEN = "TOKEN";
+    String TOKEN;
+
     private String urlString = "http://mtx.pmlabs.net:8888/";
 
     Button _fridgeButton;
@@ -27,6 +32,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null)
+            TOKEN = bundle.getString(TAG_TOKEN);
+
         initView();
 
     }
@@ -41,39 +50,48 @@ public class MainActivity extends AppCompatActivity {
         _fridgeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), FridgeActivity.class);
+                Intent intent = new Intent(getApplicationContext(), AddProductActivity.class);
+                intent.putExtra(TAG_TOKEN,TOKEN);
                 startActivityForResult(intent, 1);
                 //finish();
             }
         });
+
         _recipesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), RecipeActivity.class);
+                intent.putExtra(TAG_TOKEN,TOKEN);
                 startActivityForResult(intent, 1);
                 //finish();
             }
         });
+
         _profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(getApplicationContext(), FridgeActivity.class);
-                //startActivityForResult(intent, 1);
+                Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                intent.putExtra(TAG_TOKEN,TOKEN);
+                startActivityForResult(intent, 1);
                 //finish();
             }
         });
+
         _archieveShoppinListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Intent intent = new Intent(getApplicationContext(), FridgeActivity.class);
+                //intent.putExtra(TAG_TOKEN,TOKEN);
                 //startActivityForResult(intent, 1);
                 //finish();
             }
         });
+
         _createShoppinListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Intent intent = new Intent(getApplicationContext(), FridgeActivity.class);
+                //intent.putExtra(TAG_TOKEN,TOKEN);
                 //startActivityForResult(intent, 1);
                 //finish();
             }

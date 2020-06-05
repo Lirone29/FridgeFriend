@@ -20,6 +20,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RecipeActivity extends AppCompatActivity {
 
+    private static final String TAG_TOKEN = "TOKEN";
+    String TOKEN;
+
     private TextView textViewResult;
     private RecipeApi recipeApi;
     private ArrayList<Recipes> productsArrayList;
@@ -34,6 +37,9 @@ public class RecipeActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null)
+            TOKEN = bundle.getString(TAG_TOKEN);
 
         //textViewResult = findViewById(R.id.text_view_result);
         listView = (ListView)findViewById(R.id.listView);

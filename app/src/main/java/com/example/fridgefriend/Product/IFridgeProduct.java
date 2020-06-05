@@ -1,4 +1,4 @@
-package com.example.fridgefriend.Data;
+package com.example.fridgefriend.Product;
 
 import com.example.fridgefriend.Model.Product;
 
@@ -8,6 +8,6 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 
 public interface IFridgeProduct {
-    @GET("fridgeProduct")
+    @GET("api/fridgeProduct")
     Call<List<Product>> getFridgeProducts();
 }

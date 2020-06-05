@@ -14,6 +14,8 @@ import retrofit2.Retrofit;
 
 public class ProductsActivity extends AppCompatActivity {
     private String urlString = "http://mtx.pmlabs.net:8888/";
+    private static final String TAG_TOKEN = "TOKEN";
+    String TOKEN;
     Retrofit retrofit;
     IProduct iProduct;
     Call<List<Product>> call;
@@ -23,6 +25,9 @@ public class ProductsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null)
+            TOKEN = bundle.getString(TAG_TOKEN);
         initView();
 
     }

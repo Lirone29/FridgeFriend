@@ -33,31 +33,32 @@
         android:layout_marginEnd="99dp"
         android:layout_marginBottom="241dp"
         android:ems="10"
-        android:hint="password"
+        android:hint="Password"
         android:inputType="textPassword" />
 
     <Button
         android:id="@+id/buttonLogin"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="136dp"
-        android:layout_marginEnd="187dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginEnd="130dp"
         android:layout_marginBottom="164dp"
         android:text="Login" />
 
     <TextView
         android:id="@+id/textViewInfo"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="149dp"
-        android:layout_marginEnd="204dp"
-        android:layout_marginBottom="119dp"
+        android:layout_marginTop = "24dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginEnd="160dp"
+        android:layout_marginBottom="110dp"
         android:text="TextView" />
 
     <TextView

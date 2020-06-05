@@ -21,6 +21,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class CreateProductActivity extends AppCompatActivity {
 
     String baseUrl = "http://mtx.pmlabs.net:8888/";
+    private static final String TAG_TOKEN = "TOKEN";
+    String TOKEN;
 
     EditText _name;
     EditText _weight;
@@ -28,23 +30,26 @@ public class CreateProductActivity extends AppCompatActivity {
     EditText _calories;
     private Button _createButton;
 
-    Retrofit retrofit;
+    Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl(baseUrl)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
+
     IProduct productApi;
 
     String name;
     Float weight;
     int dateOfExpiration;
     Float calories;
+    String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_product);
-        retrofit = new Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null)
+            TOKEN = bundle.getString(TAG_TOKEN);
         initView();
     }
 
@@ -59,11 +64,9 @@ public class CreateProductActivity extends AppCompatActivity {
         _createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 createNewProduct();
             }
         });
-
         productApi = retrofit.create(IProduct.class);
 
     }
@@ -80,15 +83,12 @@ public class CreateProductActivity extends AppCompatActivity {
 
         PostProduct postProduct = new PostProduct(name, weight, calories, dateOfExpiration);
 
-
-        Call<PostProduct> call = productApi.createPost("82dae18b776fe80c6d299b59627249f1ef57fcf4", postProduct);
+        Call<PostProduct> call = productApi.createPost(TOKEN, postProduct);
 
         call.enqueue(new Callback<PostProduct>() {
             @Override
             public void onResponse(Call<PostProduct> call, Response<PostProduct> response) {
                 if (!response.isSuccessful()) {
-                    //showResponse(response.body().toString());
-                    // textViewResult.setText("Code" + response.code());
                     System.out.println("Code" + response.code());
                     return;
                 }

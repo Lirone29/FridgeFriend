@@ -27,9 +27,9 @@
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
             android:ems="5"
-            android:text="Name:"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:text="Name:"/>
 
         <EditText
             android:id="@+id/productName"
@@ -115,4 +115,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create" />
+
+    <Button
+        android:id="@+id/createProductReturnButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Return" />
 </LinearLayout>

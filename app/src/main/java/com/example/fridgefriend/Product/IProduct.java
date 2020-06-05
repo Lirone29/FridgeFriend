@@ -41,5 +41,5 @@ public interface IProduct {
 
     @POST("api/product/")
     @FormUrlEncoded
-    Call<PostProduct> savePost2(@Body PostProduct post);
+    Call<PostProduct> savePost2(@Header("Token") String token, @Body PostProduct post);
 }

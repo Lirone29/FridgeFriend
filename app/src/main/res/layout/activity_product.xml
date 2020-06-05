@@ -83,7 +83,7 @@
             android:layout_toRightOf="@id/_productWeightLabel"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="weight GG" />
+            android:text="weight XX" />
 
         <TextView
             android:id="@+id/_productCaloriesLabel"
@@ -114,4 +114,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Return" />
+
+    <Button
+        android:id="@+id/editProductButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit" />
 </LinearLayout>
