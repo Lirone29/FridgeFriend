@@ -12,6 +12,6 @@ public interface LoginApi {
     @GET("api/token/")
     Call<String> getToken(@Path("username") String username, @Path("password") String password );
 
-    @POST("api/")
+    @POST("api/registration/")
     Call<String> createUser(@Path("username") String username, @Path("password") String password );
 }

@@ -7,11 +7,18 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fridgefriend.Product.FridgeProductAdapter;
 import com.example.fridgefriend.Product.IFridgeProduct;
 import com.example.fridgefriend.Model.Product;
 import com.example.fridgefriend.Product.AddProductActivity;
 import com.example.fridgefriend.Product.CreateProductActivity;
+import com.example.fridgefriend.Product.IProduct;
+import com.example.fridgefriend.Product.OnProductClikListener;
+import com.example.fridgefriend.Product.ProductAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +39,7 @@ public class FridgeActivity extends AppCompatActivity {
     private Button _createProductButton;
     private Button _returnButton;
 
-    IFridgeProduct iFridgeProduct;
+
     Call<List<Product>> call;
     List<Product> responseList;
 
@@ -41,6 +48,16 @@ public class FridgeActivity extends AppCompatActivity {
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
+    IProduct iFridgeProduct  = retrofit.create(IProduct.class);
+
+    //components
+    RecyclerView _recyclerView;
+    FridgeProductAdapter _recycleViewAdapter;
+    RecyclerView.LayoutManager _recycleViewLayoutManager;
+
+    ArrayList<Product> productsArrayList;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +65,9 @@ public class FridgeActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null)
             TOKEN = bundle.getString(TAG_TOKEN);
+
+        productsArrayList = new ArrayList<Product>();
+
         initView();
 
     }
@@ -81,8 +101,29 @@ public class FridgeActivity extends AppCompatActivity {
             }
         });
 
-       iFridgeProduct = retrofit.create(IFridgeProduct.class);
+       iFridgeProduct = retrofit.create(IProduct.class);
 
+        _recyclerView =  (RecyclerView) findViewById(R.id.productRecyclerView);
+        _recyclerView.setHasFixedSize(true);
+
+        _recycleViewLayoutManager = new LinearLayoutManager(this);
+        _recyclerView.setEnabled(true);
+        _recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+
+
+        loadFridgeProducts();
+
+        _recycleViewAdapter = new FridgeProductAdapter(productsArrayList, new OnProductClikListener() {
+            @Override
+            public void onItemClick(Product item) {
+                chooseProduct(item.getId());
+            }
+        });
+
+
+        _recycleViewAdapter.notifyDataSetChanged();
+        _recyclerView.setLayoutManager(_recycleViewLayoutManager);
+        _recyclerView.setAdapter(_recycleViewAdapter);
     }
 
     private void addProduct(){
@@ -107,19 +148,27 @@ public class FridgeActivity extends AppCompatActivity {
 
     }
 
+    private void chooseProduct(int id){
+
+    }
+
     private void loadFridgeProducts(){
-        Call<List<Product>> call = iFridgeProduct.getFridgeProducts();
+
+        System.out.println("Token " + TOKEN);
+        Call<List<Product>> call = iFridgeProduct.getProductsInFridge("12fe059e10a0b4abb78291c572df64bad29bc981");
         call.enqueue(new Callback<List<Product>>() {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
                 if(!response.isSuccessful()){
+                    System.out.println("Code: " + response.code());
                     // _tmpTextView.setText("Code: " + response.code());
                     return;
                 }
 
+                System.out.println("Code: " + response.code());
                 List<Product> tmp = response.body();
-               // productsArrayList = (ArrayList<Product>) tmp;
-                //_recycleViewAdapter.addAllItems(productsArrayList);
+                productsArrayList = (ArrayList<Product>) tmp;
+                _recycleViewAdapter.addAllItems(productsArrayList);
 
                 responseList = response.body();
             }

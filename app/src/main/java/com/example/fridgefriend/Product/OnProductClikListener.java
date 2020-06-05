@@ -1,9 +1,7 @@
 package com.example.fridgefriend.Product;
 
-import android.view.View;
-
 import com.example.fridgefriend.Model.Product;
 
-public interface OnProductCardAdapterListener {
+public interface OnProductClikListener {
     void onItemClick(Product item);
 }

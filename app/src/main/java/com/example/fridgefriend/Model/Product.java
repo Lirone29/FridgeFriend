@@ -24,9 +24,7 @@ public class Product {
     @SerializedName("photo")
     private File photo;
 
-    public Product(){
-
-    }
+   // public Product(){}
 
     public Product(int id, String name, int daysToExpire, int weight, int calories) {
         this.id = id;

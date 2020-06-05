@@ -38,8 +38,8 @@
             android:layout_marginTop="6dp"
             android:layout_toRightOf="@id/productNameLabel"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name" />
+            android:hint="Name"
+            android:inputType="textPersonName" />
 
         <TextView
             android:id="@+id/searchProductExpirationDate"
@@ -60,8 +60,8 @@
             android:layout_marginTop="6dp"
             android:layout_toRightOf="@id/searchProductExpirationDate"
             android:ems="10"
-            android:inputType="date|textPersonName"
-            android:text="20/22/1020" />
+            android:hint="amount (e.g. 3)"
+            android:inputType="date|textPersonName" />
 
         <TextView
             android:id="@+id/productWeightLabel"
@@ -83,8 +83,8 @@
             android:layout_marginTop="6dp"
             android:layout_toRightOf="@id/productWeightLabel"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="weight GG" />
+            android:hint="in gram"
+            android:inputType="textPersonName" />
 
         <TextView
             android:id="@+id/productCaloriesLabel"
@@ -106,8 +106,8 @@
             android:layout_marginTop="6dp"
             android:layout_toRightOf="@id/productCaloriesLabel"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Number of calories" />
+            android:hint="amount (e.g. 100)"
+            android:inputType="textPersonName" />
 
         <Button
             android:id="@+id/createProductReturnButton"

@@ -95,9 +95,9 @@ public class RegistryActivity extends AppCompatActivity {
                     return;
                 }
 
-                String product = response.body();
+                String answer = response.body();
 
-                //Log.d("All Products: ", productsArrayList.get(0).getName());
+                Log.d("All Products: ", answer);
 
             }
 

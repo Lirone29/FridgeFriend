@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
-import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,9 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fridgefriend.FridgeActivity;
 import com.example.fridgefriend.Model.Product;
-import com.example.fridgefriend.Product.OnProductCardAdapterListener;
 import com.example.fridgefriend.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,14 +34,18 @@ public class AddProductActivity extends AppCompatActivity {
     private String urlString = "http://mtx.pmlabs.net:8888/";
 
     //components
-    private SearchView _searchView;
-    private RecyclerView _recyclerView;
+    //private RecyclerView _recyclerView;
     private TextView _searchProductTextView;
     private Button _searchButton;
     private Button _returnButton;
 
-    ProductCardAdapter  _recycleViewAdapter;
+    //components
+    RecyclerView _recyclerView;
+    ProductAdapter _recycleViewAdapter;
     RecyclerView.LayoutManager _recycleViewLayoutManager;
+
+    //ProductCardAdapter  _recycleViewAdapter;
+   // RecyclerView.LayoutManager _recycleViewLayoutManager;
     ArrayList<Product> productsArrayList;
 
     Retrofit retrofit = new Retrofit.Builder()
@@ -90,7 +90,7 @@ public class AddProductActivity extends AppCompatActivity {
             }
         });
 
-        _recyclerView =  (RecyclerView) findViewById(R.id.addProductListId);
+        _recyclerView =  (RecyclerView) findViewById(R.id.addProductRecycleView);
         _recyclerView.setHasFixedSize(true);
 
         _recycleViewLayoutManager = new LinearLayoutManager(this);
@@ -100,12 +100,13 @@ public class AddProductActivity extends AppCompatActivity {
 
         loadAllProducts();
 
-        _recycleViewAdapter = new ProductCardAdapter(productsArrayList, new OnProductCardAdapterListener() {
+        _recycleViewAdapter = new ProductAdapter(productsArrayList, new OnProductClikListener() {
             @Override
             public void onItemClick(Product item) {
                 chooseProduct(item.getId());
             }
         });
+
 
         _recycleViewAdapter.notifyDataSetChanged();
         _recyclerView.setLayoutManager(_recycleViewLayoutManager);
@@ -128,6 +129,7 @@ public class AddProductActivity extends AppCompatActivity {
 
                 List<Product> tmp = response.body();
                 productsArrayList = (ArrayList<Product>) tmp;
+                //Log.d("Product 3 id: ", String.valueOf(productsArrayList.get(3).getId()));
                 _recycleViewAdapter.addAllItems(productsArrayList);
             }
 
@@ -137,6 +139,7 @@ public class AddProductActivity extends AppCompatActivity {
             }
         });
     }
+
 
     public void getProductsById(int _id){
 
@@ -161,7 +164,6 @@ public class AddProductActivity extends AppCompatActivity {
 
                 Log.d("All Products: ", productsArrayList.get(0).getName());
 
-                //_recycleViewAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -173,12 +175,40 @@ public class AddProductActivity extends AppCompatActivity {
 
     public void chooseProduct(int _id){
 
-        System.out.println("IN choose");
+        System.out.println("IN choose id " + _id);
+        addProductToFridge(String.valueOf(_id));
+
         //Intent intent = new Intent(getApplicationContext(), ProductsActivity.class);
         //intent.putExtra(TAG_TOKEN,TOKEN);
         //startActivity(intent);
         //finish();
 
+    }
+
+    public void addProductToFridge(String id){
+
+        Call<PostProduct> call = productApi.addProductToFridge(TOKEN, id);
+
+        call.enqueue(new Callback<PostProduct>() {
+            @Override
+            public void onResponse(Call<PostProduct> call, Response<PostProduct> response) {
+
+                if (!response.isSuccessful()) {
+                    _searchProductTextView.setText("Code: " + response.code());
+                    return;
+                }
+
+                PostProduct product = response.body();
+
+                Log.d("Respone: ", "" +response.code());
+
+            }
+
+            @Override
+            public void onFailure(Call<PostProduct> call, Throwable t) {
+                _searchProductTextView.setText(t.getMessage());
+            }
+        });
     }
 
     public void searchProduct(){

@@ -15,8 +15,8 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="12dp"
         android:ems="10"
+        android:hint="Search Product"
         android:inputType="textPersonName"
-        android:text="Search Product"
         android:textSize="18sp" />
 
     <Button
@@ -30,7 +30,7 @@
         android:text="Search" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/addProductListId"
+        android:id="@+id/addProductRecycleView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="24dp"

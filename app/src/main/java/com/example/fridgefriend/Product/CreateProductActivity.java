@@ -9,10 +9,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fridgefriend.Data.Dialog;
 import com.example.fridgefriend.FridgeActivity;
 import com.example.fridgefriend.MainActivity;
+import com.example.fridgefriend.Model.Product;
 import com.example.fridgefriend.R;
 
 import retrofit2.Call;
@@ -20,6 +22,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.POST;
 
 public class CreateProductActivity extends AppCompatActivity {
 
@@ -42,10 +45,14 @@ public class CreateProductActivity extends AppCompatActivity {
     IProduct productApi;
 
     String name;
-    Float weight;
+    int weight;
     int dateOfExpiration;
-    Float calories;
-    String token;
+    int calories;
+
+    //components
+    RecyclerView _recyclerView;
+    FridgeProductAdapter _recycleViewAdapter;
+    RecyclerView.LayoutManager _recycleViewLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,21 +90,29 @@ public class CreateProductActivity extends AppCompatActivity {
 
         productApi = retrofit.create(IProduct.class);
 
+
+
     }
 
     public void createNewProduct() {
         name = _name.getText().toString();
-        weight = Float.valueOf(_weight.getText().toString());
+        weight = Integer.valueOf(_weight.getText().toString());
         dateOfExpiration = Integer.valueOf(_dateOfExpiration.getText().toString());
-        calories = Float.valueOf(_calories.getText().toString());
+        calories = Integer.valueOf(_calories.getText().toString());
 
         if(TextUtils.isEmpty(name)) {
             return;
         }
 
+
+        System.out.println(TOKEN);
+        System.out.println(name);
+        System.out.println(weight);
+        System.out.println(dateOfExpiration);
+        System.out.println(calories);
         PostProduct postProduct = new PostProduct(name, weight, calories, dateOfExpiration);
 
-        Call<PostProduct> call = productApi.createPost(TOKEN, postProduct);
+        Call<PostProduct> call = productApi.createPost("12fe059e10a0b4abb78291c572df64bad29bc981", postProduct);
 
         call.enqueue(new Callback<PostProduct>() {
             @Override
@@ -108,7 +123,7 @@ public class CreateProductActivity extends AppCompatActivity {
                 }
 
                 PostProduct postResponse = response.body();
-                System.out.println("Code" + response.code());
+                System.out.println("Code " + response.code());
                 openDialog();
             }
 
