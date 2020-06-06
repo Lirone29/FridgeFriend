@@ -81,10 +81,10 @@ public class MainActivity extends AppCompatActivity {
         _archieveShoppinListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(getApplicationContext(), FridgeActivity.class);
-                //intent.putExtra(TAG_TOKEN,TOKEN);
-                //startActivityForResult(intent, 1);
-                //finish();
+                Intent intent = new Intent(getApplicationContext(), ListActivity.class);
+                intent.putExtra(TAG_TOKEN,TOKEN);
+                startActivityForResult(intent, 1);
+                finish();
             }
         });
 

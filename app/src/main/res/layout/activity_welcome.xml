@@ -5,9 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    tools:context=".WelcomeActivity">
+    tools:context=".WelcomeActivity"
+    android:background="#006a9a" >
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/splashscreen" />
 
     <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:textSize="12dp"
+        android:textColor="#ffffff"
+        android:gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:text="Fridge Friend Crew 2020" />
+
+    <!--<TextView
         android:id="@+id/welcomeID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,6 +35,6 @@
         android:textAllCaps="true"
         android:textColor="#E07AAE"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold" />-->
 
 </RelativeLayout>

@@ -16,7 +16,7 @@
         <activity android:name=".Recipe.RecipeByIdActivity"></activity>
         <activity android:name=".Recipe.AddRecipeActivity" />
         <activity android:name=".Recipe.RecipeActivity" />
-        <activity android:name=".WelcomeActivity">
+        <activity android:name=".WelcomeActivity" android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,6 +42,9 @@
         <activity
             android:name=".Product.CreateProductActivity"
             android:label="Create Product Activity"></activity>
+        <activity
+            android:name=".ListActivity"
+            android:label="List Activity"></activity>
 
     </application>
 
