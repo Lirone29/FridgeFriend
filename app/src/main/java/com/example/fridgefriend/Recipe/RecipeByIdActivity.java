@@ -69,7 +69,8 @@ public class RecipeByIdActivity extends AppCompatActivity {
                 }
                 recipeName.setText(response.body().getName());
                 recipeDescription.setText(response.body().getDescription());
-                System.out.println(response.body().getName());
+               //products.setText(response.body().getProducts().toString());
+                System.out.println(response.body().getProducts());
 
 
             }

@@ -7,6 +7,8 @@ import android.os.StrictMode;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fridgefriend.Authorization.LoginActivity;
+import com.example.fridgefriend.Model.Product;
 import com.example.fridgefriend.Recipe.RecipeActivity;
 import com.example.fridgefriend.Recipe.RecipeByIdActivity;
 

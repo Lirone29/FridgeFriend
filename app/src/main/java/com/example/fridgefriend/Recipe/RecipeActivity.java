@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
 
+
 import com.example.fridgefriend.Model.Recipes;
 import com.example.fridgefriend.R;
 
@@ -36,9 +37,6 @@ public class RecipeActivity extends AppCompatActivity {
 
         //textViewResult = findViewById(R.id.text_view_result);
         listView = (ListView)findViewById(R.id.listView);
-
-
-
 
 
         Retrofit retrofit = new Retrofit.Builder()
