@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
 
-
+import com.example.fridgefriend.Model.Recipe;
 import com.example.fridgefriend.Model.Recipes;
 import com.example.fridgefriend.R;
 
@@ -39,6 +39,9 @@ public class RecipeActivity extends AppCompatActivity {
         listView = (ListView)findViewById(R.id.listView);
 
 
+
+
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://mtx.pmlabs.net:8888/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -48,7 +51,6 @@ public class RecipeActivity extends AppCompatActivity {
 
 
        getRecipes();
-
 
     }
 

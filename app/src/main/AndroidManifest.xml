@@ -4,9 +4,7 @@
     <!-- Internet Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
 
-
     <application
-
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -15,10 +13,9 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/AppTheme">
 
+        <activity android:name=".Recipe.RecipeByIdActivity"></activity>
         <activity android:name=".Recipe.AddRecipeActivity" />
         <activity android:name=".Recipe.RecipeActivity" />
-        <activity android:name=".Recipe.RecipeByIdActivity" />
-
         <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,7 +27,11 @@
             android:name=".Authorization.LoginActivity"
             android:label="Login Activity" />
         <activity
-            android:name=".RegistryActivity"
+            android:name=".MainActivity"
+            android:label="Main Activity" />
+        <activity
+            android:name=".Authorization.RegistryActivity"
+
             android:label="Registry Activity"></activity>
         <activity
             android:name=".FridgeActivity"
@@ -38,9 +39,6 @@
         <activity
             android:name=".ProductsActivity"
             android:label="Product Activity"></activity>
-        <activity
-            android:name=".MainActivity"
-            android:label="Main Activity"></activity>
         <activity
             android:name=".Product.CreateProductActivity"
             android:label="Create Product Activity"></activity>

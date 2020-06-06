@@ -6,21 +6,11 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tmpTextView"
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tmpTextView"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="12dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="12dp"
         android:gravity="center"
@@ -59,13 +49,34 @@
 
     <Button
         android:id="@+id/addProductButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="140dp"
+        android:layout_height="60dp"
         android:layout_below="@id/productScrollViewId"
-        android:layout_marginStart="24dp"
+        android:layout_marginLeft="48dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
         android:layout_marginBottom="12dp"
         android:text="Add Product" />
+
+    <Button
+        android:id="@+id/createProductButton"
+        android:layout_width="140dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/productScrollViewId"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="12dp"
+        android:layout_toEndOf="@id/addProductButton"
+        android:text="Create Product" />
+
+    <Button
+        android:id="@+id/fridgeReturnButton"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/addProductButton"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="20dp"
+        android:text="Return" />
 
 </RelativeLayout>

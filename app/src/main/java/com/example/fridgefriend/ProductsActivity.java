@@ -13,7 +13,9 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 
 public class ProductsActivity extends AppCompatActivity {
-    String baseUrl ="http://127.0.0.1:8000/api/";
+    private String urlString = "http://mtx.pmlabs.net:8888/";
+    private static final String TAG_TOKEN = "TOKEN";
+    String TOKEN;
     Retrofit retrofit;
     IProduct iProduct;
     Call<List<Product>> call;
@@ -22,7 +24,10 @@ public class ProductsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_product);
+        setContentView(R.layout.activity_product);
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null)
+            TOKEN = bundle.getString(TAG_TOKEN);
         initView();
 
     }

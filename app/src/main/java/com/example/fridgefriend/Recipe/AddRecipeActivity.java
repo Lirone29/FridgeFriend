@@ -1,8 +1,11 @@
 package com.example.fridgefriend.Recipe;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.fridgefriend.FridgeActivity;
 import com.example.fridgefriend.R;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,10 +19,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AddRecipeActivity extends AppCompatActivity {
 
+    private static final String TAG_TOKEN = "TOKEN";
+    String TOKEN;
 
     private EditText editRecipeName;
     private EditText editDescription;
-    private Button buttonAddRecipe;
+    private Button _buttonAddRecipe;
+    private Button _returnButton;
 
     private RecipeApi recipeApi;
 
@@ -31,10 +37,14 @@ public class AddRecipeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_recipe);
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null)
+            TOKEN = bundle.getString(TAG_TOKEN);
 
         editRecipeName = (EditText) findViewById(R.id.editRecipeName);
         editDescription= (EditText) findViewById(R.id.editDescription);
-        buttonAddRecipe = (Button) findViewById(R.id.buttonAddRecipe);
+        _buttonAddRecipe = (Button) findViewById(R.id.buttonAddRecipe);
+        _returnButton = (Button) findViewById(R.id.addProductReturnButton);
 
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -44,8 +54,8 @@ public class AddRecipeActivity extends AppCompatActivity {
 
         recipeApi = retrofit.create(RecipeApi.class);
 
-
-        buttonAddRecipe.setOnClickListener(new View.OnClickListener() {
+        _buttonAddRecipe.setEnabled(true);
+        _buttonAddRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 recipeName = editRecipeName.getText().toString();
@@ -64,6 +74,15 @@ public class AddRecipeActivity extends AppCompatActivity {
 
             }
         });
+
+        _returnButton.setEnabled(true);
+        _returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                returnButton();
+            }
+        });
+
     }
 
     private void createPostRecipe(){
@@ -116,5 +135,11 @@ public class AddRecipeActivity extends AppCompatActivity {
     }
 
 
+    private void returnButton(){
+        Intent intent = new Intent(getApplicationContext(), FridgeActivity.class);
+        intent.putExtra(TAG_TOKEN, TOKEN);
+        startActivityForResult(intent, 1);
+        finish();
+    }
 
 }

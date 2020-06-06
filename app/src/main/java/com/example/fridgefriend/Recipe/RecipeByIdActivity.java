@@ -2,32 +2,56 @@ package com.example.fridgefriend.Recipe;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fridgefriend.Model.Product;
 import com.example.fridgefriend.Model.Recipe;
 import com.example.fridgefriend.R;
 
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class RecipeByIdActivity extends AppCompatActivity {
+
+    private static final String TAG_TOKEN = "TOKEN";
+    String TOKEN;
 
     private RecipeApi recipeApi;
     private TextView recipeName;
     private TextView recipeDescription;
     private TextView products;
-    int userId;
+    int recipeId;
 
    //@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_by_id);
+        Bundle bundle = getIntent().getExtras();
+        if(bundle!= null){
+            recipeId = bundle.getInt("id");
+            TOKEN = bundle.getString(TAG_TOKEN);
+        }
 
         recipeName = (TextView) findViewById(R.id.recipeName);
         recipeDescription = (TextView) findViewById(R.id.decsriptionRecipe) ;
@@ -43,17 +67,13 @@ public class RecipeByIdActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        Bundle bundle = getIntent().getExtras();
-        if(bundle!= null){
-            userId = bundle.getInt("id");
-        }
-
 
         recipeApi = retrofit.create(RecipeApi.class);
-        getRecipeById(userId);
+        getRecipeById(recipeId);
 
     }
 
+    ArrayList<Product> productArrayList;
 
     void getRecipeById(int id){
 
@@ -65,12 +85,17 @@ public class RecipeByIdActivity extends AppCompatActivity {
                 if (!response.isSuccessful()) {
                   //  textViewResult.setText("Code" + response.code());
                     System.out.println("Code" + response.code());
+
                     return;
                 }
+
                 recipeName.setText(response.body().getName());
                 recipeDescription.setText(response.body().getDescription());
-               //products.setText(response.body().getProducts().toString());
-                System.out.println(response.body().getProducts());
+                productArrayList= new ArrayList<>(response.body().getProducts());
+                for(int i = 0 ; i <productArrayList.size(); i ++){
+                    products.setText(productArrayList.get(i).getName());
+
+                }
 
 
             }

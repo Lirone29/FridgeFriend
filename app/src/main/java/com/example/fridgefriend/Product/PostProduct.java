@@ -2,11 +2,12 @@ package com.example.fridgefriend.Product;
 
 public class PostProduct {
     public String name;
-    public float calories;
-    public float weight;
+    public int calories;
+    public int weight;
     public int daysToExpire;
 
-    public PostProduct(String name, float calories, float weight, int daysToExpire) {
+
+    public PostProduct(String name, int calories, int weight, int daysToExpire) {
         this.name = name;
         this.calories = calories;
         this.weight = weight;
@@ -25,7 +26,7 @@ public class PostProduct {
         return calories;
     }
 
-    public void setCalories(float calories) {
+    public void setCalories(int calories) {
         this.calories = calories;
     }
 
@@ -33,7 +34,7 @@ public class PostProduct {
         return weight;
     }
 
-    public void setWeight(float weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
 

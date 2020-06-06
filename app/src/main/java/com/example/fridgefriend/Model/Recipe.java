@@ -1,25 +1,39 @@
 package com.example.fridgefriend.Model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Recipe implements Serializable {
 
+    @SerializedName("id")
+    @Expose
     private int id;
 
+    @SerializedName("name")
+    @Expose
     private String name;
 
+    @SerializedName("description")
+    @Expose
     private String description;
 
     private String photoUrl;
 
-    private List<Product> products;
+    @SerializedName("products")
+    @Expose
+    private ArrayList<Product> products;
 
-
-    public List<Product> getProducts() {
+    public ArrayList<Product> getProducts() {
         return products;
     }
 
+    public void setProducts(ArrayList<Product> products) {
+        this.products = products;
+    }
 
 
     public String getName() {
@@ -58,6 +72,7 @@ public class Recipe implements Serializable {
     public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
     }
+
 
 
 }

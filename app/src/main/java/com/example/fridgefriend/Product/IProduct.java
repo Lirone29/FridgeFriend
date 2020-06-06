@@ -15,33 +15,29 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface IProduct {
-    @GET("products")
+
+    //good
+    @GET("api/products")
     Call<List<Product>> getProductsList();
 
+    //good
     @GET("api/products/{id}")
-    Call <Product> getProduct(@Path("id") int postId );
+    Call <Product> getProductById(@Path("id") int postId );
 
-    @GET("api/products")
-    Call<String> getProducts() ;
-
-    @Headers({
-            "Content-Type: application/json",
-            "Authorization: Token 82dae18b776fe80c6d299b59627249f1ef57fcf4"
-    })
-
-    @POST("api/product/")
+    //good
+    @POST("api/products/")
     public Call<PostProduct> createPost(@Header("Token") String token, @Body PostProduct post);
 
+    @POST("api/products-in-fridge/")
+    Call<PostProduct> addProductToFridge(@Header("Token") String token, @Body String postId);
 
+    @GET("api/products-in-fridge/")
+    Call<List<Product>> getProductsInFridge(@Header("Token") String token);
 
-    @POST("api/product/")
-    @FormUrlEncoded
-    Call<PostProduct> savePost(@Field("name") String name,
-                               @Field("calories") Float body,
-                               @Field("weight") Float weight,
-                               @Field("daysToExpire") int daysToExpire);
+    @POST("api/products-in-fridge/")
+    Call<String> removeProductFromFridge(@Header("Token") String token, @Path("product_in_fridge_id") String postId);
 
-    @POST("api/product/")
-    @FormUrlEncoded
-    Call<PostProduct> savePost2(@Body PostProduct post);
+    //@GET("api/fridgeProduct/")
+    //Call<List<Product>> getFridgeProducts();
+
 }
