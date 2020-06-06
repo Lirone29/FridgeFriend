@@ -1,55 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    tools:context=".WelcomeActivity">
+    android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/editRecipeName"
+    <TextView
+        android:id="@+id/AddRecipe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="99dp"
-        android:layout_marginBottom="312dp"
-        android:ems="10"
-        android:hint="Recipe Name"
-        android:inputType="textPersonName" />
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:text="Add Recipe:"
+        android:textSize="22sp"
+        android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/editDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="99dp"
-        android:layout_marginBottom="241dp"
-        android:ems="10"
-        android:hint="Desctiprion"
-        android:inputType="textPersonName" />
-
-    <Button
-        android:id="@+id/buttonAddRecipe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="136dp"
-        android:layout_marginEnd="187dp"
-        android:layout_marginBottom="164dp"
-        android:text="Add Recipe" />
-
-    <com.google.android.material.textfield.TextInputLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="486dp"
+        android:gravity="center_horizontal">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/recipeNameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:ems="5"
+            android:text="Name:"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editRecipeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_toRightOf="@id/recipeNameLabel"
+            android:ems="10"
+            android:hint="Recipe Name" />
+
+        <TextView
+            android:id="@+id/editDescriptionLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="46dp"
+            android:layout_below="@id/recipeNameLabel"
+            android:layout_marginBottom="6dp"
+            android:ems="5"
+            android:text="Description:"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editDescription"
+            android:layout_width="262dp"
+            android:layout_height="292dp"
+            android:layout_below="@id/editRecipeName"
+            android:layout_marginLeft="-4dp"
+            android:layout_marginTop="6dp"
+            android:layout_toRightOf="@id/editDescriptionLabel"
+            android:ems="10"
+            android:hint="Desctiprion"
+            android:inputType="textMultiLine" />
+
+
+        <Button
+            android:id="@+id/addProductReturnButton"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editDescriptionLabel"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="312dp"
+            android:layout_marginRight="20dp"
+            android:foregroundGravity="center"
+            android:gravity="clip_horizontal|center|center_horizontal"
+            android:text="Return" />
+
+        <Button
+            android:id="@+id/buttonAddRecipe"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editDescription"
+            android:layout_marginLeft="39dp"
+            android:layout_marginTop="68dp"
+            android:layout_marginRight="30dp"
+            android:layout_toRightOf="@id/addProductReturnButton"
+            android:foregroundGravity="center"
+            android:gravity="center"
+            android:text="Add" />
+    </RelativeLayout>
+
+</LinearLayout>

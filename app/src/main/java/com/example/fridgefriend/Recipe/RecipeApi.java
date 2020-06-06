@@ -27,10 +27,17 @@ public interface RecipeApi {
 
     @Headers({
             "Content-Type: application/json",
-            "Authorization: Token 82dae18b776fe80c6d299b59627249f1ef57fcf4"
+            "Authorization: Token 8cbb6cf9bca1a0bc324c64a97fea2a3bc748b962"
     })
     @POST("api/recipe/")
     Call<PostRecipe> createPost(@Header ("Token") String token, @Body PostRecipe postRecipe);
+
+    @Headers({
+            "Content-Type: application/json",
+            "Authorization: Token 8cbb6cf9bca1a0bc324c64a97fea2a3bc748b962"
+    })
+    @POST("api/delete-recipe/")
+    Call<DeleteRecipe> deletePost(@Header ("Token") String token, @Body DeleteRecipe deleteRecipe);
 
 }
 

@@ -6,9 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fridgefriend.FridgeActivity;
 import com.example.fridgefriend.Model.Recipe;
 import com.example.fridgefriend.Model.Recipes;
 import com.example.fridgefriend.R;
@@ -19,6 +21,7 @@ public class ListViewAdapter extends BaseAdapter {
 
     ArrayList<Recipes> recipesArrayList;
     Context context;
+    Button deleteButton;
 
     public ListViewAdapter(Context context, ArrayList<Recipes> recipesArrayList) {
         super();
@@ -49,28 +52,37 @@ public class ListViewAdapter extends BaseAdapter {
 
         }
         final Recipes recipes = (Recipes) getItem(position);
-        TextView textViewItemName = (TextView)
-                convertView.findViewById(R.id.text_view_item_name);
-        textViewItemName.setText(recipes.getName());
+        TextView recipeName = (TextView)
+                convertView.findViewById(R.id.recipeName);
+        deleteButton = (Button) convertView.findViewById(R.id.deleteButtonId);
+
+        recipeName.setText(recipes.getName());
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, recipes.getDescription(), Toast.LENGTH_SHORT).show();
                 openRecipeActivity(recipes);
-
             }
         });
 
-
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DeleteRecipeImp deleteRecipeImp = new DeleteRecipeImp(recipes.getId());
+                Intent intent = new Intent(context, RecipeActivity.class);
+                context.startActivity(intent);
+            }
+        });
 
         return convertView;
     }
+
 
     private void openRecipeActivity(Recipes recipes){
         Intent intent = new Intent(context, RecipeByIdActivity.class);
         intent.putExtra("id", recipes.getId());
         context.startActivity(intent);
+
 
     }
 }

@@ -2,6 +2,7 @@ package com.example.fridgefriend.Recipe;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fridgefriend.MainActivity;
 import com.example.fridgefriend.Model.Product;
 import com.example.fridgefriend.Model.Recipe;
 import com.example.fridgefriend.R;
@@ -10,6 +11,8 @@ import com.example.fridgefriend.R;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +44,7 @@ public class RecipeByIdActivity extends AppCompatActivity {
     private TextView recipeName;
     private TextView recipeDescription;
     private TextView products;
+    private Button returnButton;
     int recipeId;
 
    //@Override
@@ -56,6 +60,7 @@ public class RecipeByIdActivity extends AppCompatActivity {
         recipeName = (TextView) findViewById(R.id.recipeName);
         recipeDescription = (TextView) findViewById(R.id.decsriptionRecipe) ;
         products = (TextView) findViewById(R.id.productInRecipe) ;
+        returnButton = (Button)findViewById(R.id.returnButtonToRecipe);
 
         Intent intent = getIntent();
         String receivedName =  intent.getStringExtra("name");
@@ -70,6 +75,13 @@ public class RecipeByIdActivity extends AppCompatActivity {
 
         recipeApi = retrofit.create(RecipeApi.class);
         getRecipeById(recipeId);
+
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                returnButton();
+            }
+        });
 
     }
 
@@ -108,5 +120,12 @@ public class RecipeByIdActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void returnButton(){
+        Intent intent = new Intent(getApplicationContext(), RecipeActivity.class);
+        intent.putExtra(TAG_TOKEN, TOKEN);
+        startActivityForResult(intent, 1);
+        finish();
     }
 }

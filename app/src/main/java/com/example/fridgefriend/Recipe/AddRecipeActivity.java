@@ -24,8 +24,8 @@ public class AddRecipeActivity extends AppCompatActivity {
 
     private EditText editRecipeName;
     private EditText editDescription;
-    private Button _buttonAddRecipe;
-    private Button _returnButton;
+    private Button buttonAddRecipe;
+    private Button returnButton;
 
     private RecipeApi recipeApi;
 
@@ -43,8 +43,8 @@ public class AddRecipeActivity extends AppCompatActivity {
 
         editRecipeName = (EditText) findViewById(R.id.editRecipeName);
         editDescription= (EditText) findViewById(R.id.editDescription);
-        _buttonAddRecipe = (Button) findViewById(R.id.buttonAddRecipe);
-        _returnButton = (Button) findViewById(R.id.addProductReturnButton);
+        buttonAddRecipe = (Button) findViewById(R.id.buttonAddRecipe);
+        returnButton = (Button) findViewById(R.id.addProductReturnButton);
 
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -54,8 +54,8 @@ public class AddRecipeActivity extends AppCompatActivity {
 
         recipeApi = retrofit.create(RecipeApi.class);
 
-        _buttonAddRecipe.setEnabled(true);
-        _buttonAddRecipe.setOnClickListener(new View.OnClickListener() {
+        buttonAddRecipe.setEnabled(true);
+        buttonAddRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 recipeName = editRecipeName.getText().toString();
@@ -75,8 +75,8 @@ public class AddRecipeActivity extends AppCompatActivity {
             }
         });
 
-        _returnButton.setEnabled(true);
-        _returnButton.setOnClickListener(new View.OnClickListener() {
+        returnButton.setEnabled(true);
+        returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 returnButton();
@@ -92,7 +92,7 @@ public class AddRecipeActivity extends AppCompatActivity {
         PostRecipe postRecipe = new PostRecipe(recipeName,recipeDescription) ;
 
 
-        Call<PostRecipe> call = recipeApi.createPost("82dae18b776fe80c6d299b59627249f1ef57fcf4", postRecipe);
+        Call<PostRecipe> call = recipeApi.createPost("ca61a446656139a887c2ffff4b0401e8d1b85068", postRecipe);
 
         call.enqueue(new Callback<PostRecipe>() {
             @Override
@@ -136,7 +136,7 @@ public class AddRecipeActivity extends AppCompatActivity {
 
 
     private void returnButton(){
-        Intent intent = new Intent(getApplicationContext(), FridgeActivity.class);
+        Intent intent = new Intent(getApplicationContext(), RecipeActivity.class);
         intent.putExtra(TAG_TOKEN, TOKEN);
         startActivityForResult(intent, 1);
         finish();

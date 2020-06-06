@@ -6,7 +6,6 @@ public class PostRecipe {
 
     private String description;
 
-    //private String photo;
 
     public PostRecipe(String name, String description) {
         this.name = name;
@@ -22,7 +21,5 @@ public class PostRecipe {
         return description;
     }
 
-   /* public String getPhoto() {
-        return photo;
-    }*/
+
 }
