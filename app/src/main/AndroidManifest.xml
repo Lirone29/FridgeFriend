@@ -25,13 +25,16 @@
         </activity>
         <activity
             android:name=".Authorization.LoginActivity"
-            android:label="Login Activity" />
+            android:label="Login Activity"
+        android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity
             android:name=".Authorization.RegistryActivity"
-            android:label="Registry Activity"></activity>
+            android:label="Registry Activity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
         <activity
             android:name=".MainActivity"
-            android:label="Main Activity" />
+            android:label="Main Activity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity
             android:name=".FridgeActivity"
             android:label="Fridge Activity"></activity>

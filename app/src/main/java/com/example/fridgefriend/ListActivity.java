@@ -2,6 +2,7 @@ package com.example.fridgefriend;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +37,7 @@ public class ListActivity extends AppCompatActivity implements AddToListDialog.E
     ArrayList<Recipes> productsArrayList;
     ShoppingList shoppingList;
     ShoppingListApi shoppingListApi;
-
+    private Button _returnButton;
     @Override
     public void applyTexts(int position) {
 
@@ -197,6 +198,14 @@ public class ListActivity extends AppCompatActivity implements AddToListDialog.E
             }
 
         });
+        _returnButton =  (Button) findViewById(R.id.ListReturnButton);
+        _returnButton.setEnabled(true);
+        _returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                returnButton();
+            }
+        });
     }
 
     void getShoppingList() {
@@ -293,5 +302,11 @@ public class ListActivity extends AppCompatActivity implements AddToListDialog.E
               //  Toast.makeText(ListActivity.this, "Fail post", Toast.LENGTH_LONG).show();
             }
         });
+    }
+    public void returnButton(){
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        //intent.putExtra(TAG_TOKEN, TOKEN);
+        startActivityForResult(intent, 1);
+        finish();
     }
 }
