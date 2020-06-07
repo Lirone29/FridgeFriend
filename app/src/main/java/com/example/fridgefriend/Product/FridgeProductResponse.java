@@ -9,82 +9,78 @@ public class FridgeProductResponse {
 
     @SerializedName("id")
     @Expose
-    private int id;
-
-    @SerializedName("user_id")
-    @Expose
-    private String user_id;
-
-    @SerializedName("product_id")
-    @Expose
-    private String product_id;
+    private String id;
 
     @SerializedName("removed")
     @Expose
-    private boolean removed;
+    private String removed;
 
     @SerializedName("dateAdded")
     @Expose
-    private String date;
+    private String dateAdded;
+
+    @SerializedName("user")
+    @Expose
+    private String user;
+
+    @SerializedName("product")
+    @Expose
+    private String product;
+
 
     public String getDate() {
-        return date;
+        return dateAdded;
     }
 
     public void setDate(String date) {
-        this.date = date;
+        this.dateAdded = date;
     }
 
-    public FridgeProductResponse(int id, String user_id, String product_id) {
-        this.id = id;
-        this.user_id = user_id;
-        this.product_id = product_id;
-    }
-
-    public FridgeProductResponse(int id, String user_id, String product_id, String date) {
-        this.id = id;
-        this.user_id = user_id;
-        this.product_id = product_id;
-        this.date = date;
-    }
-
-    public FridgeProductResponse(int id, String user_id, String product_id, boolean removed, String date) {
-        this.id = id;
-        this.user_id = user_id;
-        this.product_id = product_id;
-        this.removed = removed;
-        this.date = date;
-    }
-
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
-    }
-
-    public boolean isRemoved() {
+    public String getRemoved() {
         return removed;
     }
 
-    public void setRemoved(boolean removed) {
+    public void setRemoved(String removed) {
         this.removed = removed;
     }
 
-    public String getProduct_id() {
-        return product_id;
+    public String getDateAdded() {
+        return dateAdded;
     }
 
-    public void setProduct_id(String product_id) {
-        this.product_id = product_id;
+    public void setDateAdded(String dateAdded) {
+        this.dateAdded = dateAdded;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getProduct() {
+        return product;
+    }
+
+    public void setProduct(String product) {
+        this.product = product;
+    }
+
+    public FridgeProductResponse(String id, String removed, String dateAdded, String user, String product) {
+        this.id = id;
+        this.removed = removed;
+        this.dateAdded = dateAdded;
+        this.user = user;
+        this.product = product;
     }
 }

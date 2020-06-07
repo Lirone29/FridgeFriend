@@ -1,7 +1,9 @@
 package com.example.fridgefriend.Product;
 
 import com.example.fridgefriend.Model.Product;
+import com.google.gson.JsonArray;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -17,11 +19,6 @@ import retrofit2.http.Query;
 
 public interface IProduct {
 
-   // @Headers({
-   //         "Content-Type: application/json",
-   //         "Authorization: Token 7c1a4c733efb18d3a3dc8bbc4fef0f30274bb52a"
-   //s })
-
     //good
     @GET("api/products")
     Call<List<Product>> getProductsList();
@@ -34,14 +31,10 @@ public interface IProduct {
     @POST("api/products/")
     Call<PostProduct> createPost(@Header("Token") String token, @Body PostProduct post);
 
+    //good
     @GET("api/products-in-fridge/")
-    Call<List<FridgeProductResponse>> getProductsInFridge(@Header("Content-Type")String contentType, @Header("Token") String token);
-
-    @GET("api/products-in-fridge/")
-    Call<List<Object>> getProductsInFridgeObject(@Header("Content-Type")String contentType, @Header("Token") String token);
-
-    @GET("api/products-in-fridge/")
-    Call<String> getProductsInFridgeString(@Header("Content-Type")String contentType, @Header("Token") String token);
+    @Headers({"Content-Type: application/json"})
+    Call<List<FridgeProductResponse>> getProductsInFridge(@Header("Content-Type")String contentType, @Header("Authorization") String token);
 
     //good
     @POST("api/products-in-fridge/")
@@ -52,6 +45,7 @@ public interface IProduct {
     //Call<String> addProductToFridgeString(@Header("Content-Type")String contentType, @Header("Token") String token, @Field("product_id") String postId);
 
     @FormUrlEncoded
+    @Headers({"Content-Type: application/json"})
     @POST("api/products-in-fridge/")
     Call<String> removeProductFromFridge(@Header("Token") String token, @Path("product_in_fridge_id") String postId);
 

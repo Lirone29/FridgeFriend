@@ -12,48 +12,20 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="5dp"
         android:gravity="center"
-        android:text="Fridge Content:"
+        android:text="Fridge"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
-
-    <ScrollView
-        android:id="@+id/productScrollViewId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textView"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="12dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/productRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginBottom="12dp" />
-
-        </LinearLayout>
-
-    </ScrollView>
 
     <Button
         android:id="@+id/addProductButton"
         android:layout_width="140dp"
         android:layout_height="60dp"
-        android:layout_below="@id/productScrollViewId"
+        android:layout_below="@id/textView"
         android:layout_marginLeft="48dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="24dp"
         android:layout_marginBottom="12dp"
         android:text="Add Product" />
@@ -62,9 +34,9 @@
         android:id="@+id/createProductButton"
         android:layout_width="140dp"
         android:layout_height="60dp"
-        android:layout_below="@id/productScrollViewId"
+        android:layout_below="@id/textView"
         android:layout_marginLeft="24dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="12dp"
         android:layout_marginBottom="12dp"
         android:layout_toEndOf="@id/addProductButton"
@@ -75,8 +47,50 @@
         android:layout_width="160dp"
         android:layout_height="60dp"
         android:layout_below="@id/addProductButton"
-        android:layout_marginLeft="140dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="10dp"
         android:text="Return" />
+
+    <ScrollView
+        android:id="@+id/productScrollViewId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fridgeReturnButton"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:text="Products in fridge:"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/productRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="12dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

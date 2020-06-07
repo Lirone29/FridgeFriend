@@ -117,26 +117,29 @@ public class AddProductActivity extends AppCompatActivity {
 
 
     public void loadAllProducts(){
-        Call<List<Product>> call = productApi.getProductsList();
 
+        Call<List<Product>> call = productApi.getProductsList();
         call.enqueue(new Callback<List<Product>>() {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
 
                 if (!response.isSuccessful()) {
-                    _searchProductTextView.setText("Code: " + response.code());
+                    Log.d("Respone: ", "" +response.isSuccessful());
+                    Log.d("Respone: ", "" +response.headers().toString());
                     return;
                 }
 
+                Log.d("Respone: ", "" +response.isSuccessful());
+                Log.d("Respone: ", "" +response.headers().toString());
+
                 List<Product> tmp = response.body();
                 productsArrayList = (ArrayList<Product>) tmp;
-                //Log.d("Product 3 id: ", String.valueOf(productsArrayList.get(3).getId()));
                 _recycleViewAdapter.addAllItems(productsArrayList);
             }
 
             @Override
             public void onFailure(Call<List<Product>> call, Throwable t) {
-                _searchProductTextView.setText(t.getMessage());
+                Log.d("Failure: ", "" +t.getMessage());
             }
         });
     }
