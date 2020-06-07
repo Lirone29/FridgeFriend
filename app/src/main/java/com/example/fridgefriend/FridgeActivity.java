@@ -2,6 +2,7 @@ package com.example.fridgefriend;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -12,12 +13,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fridgefriend.Product.FridgeProductAdapter;
+import com.example.fridgefriend.Product.FridgeProductResponse;
 import com.example.fridgefriend.Product.IFridgeProduct;
 import com.example.fridgefriend.Model.Product;
 import com.example.fridgefriend.Product.AddProductActivity;
 import com.example.fridgefriend.Product.CreateProductActivity;
 import com.example.fridgefriend.Product.IProduct;
 import com.example.fridgefriend.Product.OnProductClikListener;
+import com.example.fridgefriend.Product.PostProduct;
 import com.example.fridgefriend.Product.ProductAdapter;
 
 import java.util.ArrayList;
@@ -33,21 +36,18 @@ public class FridgeActivity extends AppCompatActivity {
     private static final String TAG = "FridgeActivity";
     String baseUrl ="http://mtx.pmlabs.net:8888/";
     private static final String TAG_TOKEN = "TOKEN";
-    String TOKEN = "ca61a446656139a887c2ffff4b0401e8d1b85068";
+    String TOKEN = "";
 
     private Button _addProductButton;
     private Button _createProductButton;
     private Button _returnButton;
 
-
-    Call<List<Product>> call;
-    List<Product> responseList;
+    List<PostProduct> responseList;
 
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
-
     IProduct iFridgeProduct  = retrofit.create(IProduct.class);
 
     //components
@@ -101,8 +101,6 @@ public class FridgeActivity extends AppCompatActivity {
             }
         });
 
-       iFridgeProduct = retrofit.create(IProduct.class);
-
         _recyclerView =  (RecyclerView) findViewById(R.id.productRecyclerView);
         _recyclerView.setHasFixedSize(true);
 
@@ -140,7 +138,31 @@ public class FridgeActivity extends AppCompatActivity {
         //finish();
     }
 
-    private void removeProduct(){
+    private void removeProduct(String id){
+
+        Call<String> call = iFridgeProduct.removeProductFromFridge(TOKEN, id);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(!response.isSuccessful()){
+                    System.out.println("Code: " + response.code());
+                    // _tmpTextView.setText("Code: " + response.code());
+                    return;
+                }
+
+                System.out.println("Code: " + response.code());
+                //List<Product> tmp = response.body();
+                //productsArrayList = (ArrayList<Product>) tmp;
+                //_recycleViewAdapter.addAllItems(productsArrayList);
+
+                //responseList = response.body();
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                //_tmpTextView.setText(t.getMessage());
+            }
+        });
 
     }
 
@@ -154,27 +176,30 @@ public class FridgeActivity extends AppCompatActivity {
 
     private void loadFridgeProducts(){
 
-        System.out.println("Token " + TOKEN);
-        Call<List<Product>> call = iFridgeProduct.getProductsInFridge("12fe059e10a0b4abb78291c572df64bad29bc981");
-        call.enqueue(new Callback<List<Product>>() {
+        String contentType = "application/json";
+
+        System.out.println("In Fridge Token " + TOKEN);
+        Call<List<FridgeProductResponse>> call = iFridgeProduct.getProductsInFridge(contentType, TOKEN);
+        call.enqueue(new Callback<List<FridgeProductResponse>>() {
             @Override
-            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+            public void onResponse(Call<List<FridgeProductResponse>> call, Response<List<FridgeProductResponse>> response) {
                 if(!response.isSuccessful()){
                     System.out.println("Code: " + response.code());
                     // _tmpTextView.setText("Code: " + response.code());
                     return;
                 }
 
-                System.out.println("Code: " + response.code());
-                List<Product> tmp = response.body();
-                productsArrayList = (ArrayList<Product>) tmp;
-                _recycleViewAdapter.addAllItems(productsArrayList);
-
-                responseList = response.body();
+                Log.d("Respone: ", "" +response.isSuccessful());
+                Log.d("Respone: ", "" +response.body());
+                Log.d("Respone: ", "" +response.headers().toString());
+                List<FridgeProductResponse> tmp = response.body();
+                System.out.println("Code: " + tmp.get(0).toString());
+                //productsArrayList = (ArrayList<Product>) tmp;
+                //_recycleViewAdapter.addAllItems(productsArrayList);
             }
 
             @Override
-            public void onFailure(Call<List<Product>> call, Throwable t) {
+            public void onFailure(Call<List<FridgeProductResponse>> call, Throwable t) {
                 //_tmpTextView.setText(t.getMessage());
             }
         });

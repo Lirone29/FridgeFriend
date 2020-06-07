@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fridgefriend.Data.Dialog;
 import com.example.fridgefriend.FridgeActivity;
 import com.example.fridgefriend.Model.Product;
 import com.example.fridgefriend.R;
@@ -29,7 +30,8 @@ public class AddProductActivity extends AppCompatActivity {
 
     private static final String TAG_ID = "id";
     private static final String TAG_TOKEN = "TOKEN";
-    String TOKEN;
+    String TOKEN = "";
+    //String TOKEN = "8cbb6cf9bca1a0bc324c64a97fea2a3bc748b962";
 
     private String urlString = "http://mtx.pmlabs.net:8888/";
 
@@ -44,8 +46,6 @@ public class AddProductActivity extends AppCompatActivity {
     ProductAdapter _recycleViewAdapter;
     RecyclerView.LayoutManager _recycleViewLayoutManager;
 
-    //ProductCardAdapter  _recycleViewAdapter;
-   // RecyclerView.LayoutManager _recycleViewLayoutManager;
     ArrayList<Product> productsArrayList;
 
     Retrofit retrofit = new Retrofit.Builder()
@@ -62,6 +62,7 @@ public class AddProductActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null)
             TOKEN = bundle.getString(TAG_TOKEN);
+            System.out.println("TOKEN IN ADD = " + TOKEN);
 
         productsArrayList = new ArrayList<Product>();
 
@@ -175,7 +176,7 @@ public class AddProductActivity extends AppCompatActivity {
 
     public void chooseProduct(int _id){
 
-        System.out.println("IN choose id " + _id);
+        //System.out.println("IN choose id " + _id);
         addProductToFridge(String.valueOf(_id));
 
         //Intent intent = new Intent(getApplicationContext(), ProductsActivity.class);
@@ -187,8 +188,9 @@ public class AddProductActivity extends AppCompatActivity {
 
     public void addProductToFridge(String id){
 
-        Call<PostProduct> call = productApi.addProductToFridge(TOKEN, id);
-
+        String contentType = "application/json";
+        System.out.println("TOKEN " + TOKEN);
+        Call<PostProduct> call = productApi.addProductToFridge(contentType, TOKEN, id);
         call.enqueue(new Callback<PostProduct>() {
             @Override
             public void onResponse(Call<PostProduct> call, Response<PostProduct> response) {
@@ -198,9 +200,12 @@ public class AddProductActivity extends AppCompatActivity {
                     return;
                 }
 
+                System.out.println("Code: " + String.valueOf(response.code()));
                 PostProduct product = response.body();
-
-                Log.d("Respone: ", "" +response.code());
+                Log.d("Respone: ", "" +response.isSuccessful());
+                Log.d("Respone: ", "" +response.body());
+                Log.d("Respone: ", "" +response.headers().toString());
+                openDialog();
 
             }
 
@@ -213,7 +218,6 @@ public class AddProductActivity extends AppCompatActivity {
 
     public void searchProduct(){
 
-        //Log.d("All Products: ", productsArrayList.get(1).getName());
         String productText = _searchProductTextView.getText().toString();
         for(int i = 0 ; i < productsArrayList.size(); i++){
             if(productsArrayList.get(i).getName().equals(productText)) {
@@ -230,5 +234,10 @@ public class AddProductActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
 
+    }
+
+    private void openDialog() {
+        Dialog dialog = new Dialog();
+        dialog.show(getSupportFragmentManager(), "dialog");
     }
 }

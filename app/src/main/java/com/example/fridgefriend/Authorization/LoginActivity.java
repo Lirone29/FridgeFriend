@@ -60,10 +60,6 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivityForResult(intent, REQUEST_SIGNUP);
-                finish();
-
                 validate(editTextName.getText().toString(),editTextPassword.getText().toString());
             }
         });
@@ -84,43 +80,49 @@ public class LoginActivity extends AppCompatActivity {
 
     private void validate(String userName, String userPassword) {
 
-
+        System.out.println("USERNAME =" + userName);
+        System.out.println("PASSWORD =" + userPassword);
         if((userName.equals("")) && (userPassword.equals(""))){
             return;
         }
+        LoginRequest loginRequest = new LoginRequest(userName,userPassword);
 
+        Call<LoginResponse> call = loginApi.getToken(userName, userPassword);
+        //Call<String> call = loginApi.getToken(loginRequest);
 
-        //Call<String> call = loginApi.getToken(userName, userPassword);
-
-        /*call.enqueue(new Callback<String>() {
+         call.enqueue(new Callback<LoginResponse>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
 
                 if (!response.isSuccessful()) {
                     editTextName.setText("Code: " + response.code());
                     return;
                 }
 
-                String tmp = response.body();
+                LoginResponse tmp = response.body();
+                TOKEN = tmp.getToken();
+                System.out.println("TOKEN IN LOGIN == " + tmp.getToken());
 
-                TOKEN = tmp;
-                //productsArrayList = (ArrayList<Product>) tmp;
-                //_recycleViewAdapter.addAllItems(productsArrayList);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra(TAG_TOKEN, tmp.getToken());
+                startActivityForResult(intent, REQUEST_SIGNUP);
+                finish();
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
                 editTextName.setText(t.getMessage());
             }
-        });*/
+        });
 
 
     }
 
     public void openMenu(){
-        //String TOKEN = "ca61a446656139a887c2ffff4b0401e8d1b85068";
+        //TOKEN = "7c1a4c733efb18d3a3dc8bbc4fef0f30274bb52a";
+       // System.out.println("TOKEN IN LOGIN 2 = " + TOKEN);
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        intent.putExtra(TAG_TOKEN, "ca61a446656139a887c2ffff4b0401e8d1b85068");
+        intent.putExtra(TAG_TOKEN, TOKEN);
         startActivityForResult(intent, 2);
         finish();
     }

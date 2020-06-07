@@ -51,6 +51,7 @@ public class RegistryActivity extends AppCompatActivity {
         _returnButton = findViewById(R.id.registryLoginButton);
         _registerButton = findViewById(R.id.registerButton);
 
+        _returnButton.setEnabled(true);
         _returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +61,7 @@ public class RegistryActivity extends AppCompatActivity {
             }
         });
 
+        _registerButton.setEnabled(true);
         _registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,8 +86,9 @@ public class RegistryActivity extends AppCompatActivity {
 
     public void createUser(String username, String password){
 
+        System.out.println("Username " + username);
+        System.out.println("Password " + password);
         Call<String> call = loginApi.createUser(username, password);
-
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
@@ -96,8 +99,7 @@ public class RegistryActivity extends AppCompatActivity {
                 }
 
                 String answer = response.body();
-
-                Log.d("All Products: ", answer);
+                Log.d("Response: ", answer);
 
             }
 
@@ -112,14 +114,12 @@ public class RegistryActivity extends AppCompatActivity {
 
     public boolean validate(){
 
-        //new LoadAllUsers();
-
         boolean valid=  true;
         String login = _loginText.getText().toString();
         String password = _passwordText.getText().toString();
 
         //verifying login constrains
-        if (login.isEmpty() || login.length() < 8 || login.length() > 30) {
+        if (login.isEmpty() || login.length() < 5 || login.length() > 30) {
             _loginText.setError("Between 8 and 30 alphanumeric characters");
             valid = false;
         } else {

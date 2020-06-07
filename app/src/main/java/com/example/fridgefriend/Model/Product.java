@@ -27,11 +27,7 @@ public class Product {
     @Expose
     public int calories;
 
-    @SerializedName("photo")
-    @Expose
-    private File photo;
-
-   public Product(){}
+   //public Product(){}
 
     public Product(int id, String name, int daysToExpire, int weight, int calories) {
         this.id = id;
@@ -39,15 +35,6 @@ public class Product {
         this.daysToExpire = daysToExpire;
         this.weight = weight;
         this.calories = calories;
-    }
-
-    public Product(int id, String name, int daysToExpire, int weight, int calories, File photo) {
-        this.id = id;
-        this.name = name;
-        this.daysToExpire = daysToExpire;
-        this.weight = weight;
-        this.calories = calories;
-        this.photo = photo;
     }
 
     public int getId() {
@@ -82,10 +69,6 @@ public class Product {
         return calories;
     }
 
-    public File getPhoto() {
-        return photo;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -102,7 +85,4 @@ public class Product {
         this.calories = calories;
     }
 
-    public void setPhoto(File photo) {
-        this.photo = photo;
-    }
 }

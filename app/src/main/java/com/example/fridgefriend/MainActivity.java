@@ -19,7 +19,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static final String TAG_TOKEN = "TOKEN";
     private static final int USER_ACTION = 3;
-    String TOKEN = "ca61a446656139a887c2ffff4b0401e8d1b85068";
+    String TOKEN;
+    //String TOKEN = "eefac50b05cc5afceeb815a5994fd5153cd8f9b9";
 
     private String urlString = "http://mtx.pmlabs.net:8888/";
 
@@ -36,12 +37,13 @@ public class MainActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null)
             TOKEN = bundle.getString(TAG_TOKEN);
-
+        System.out.println("TOKEN " + TOKEN);
         initView();
 
     }
 
     private void initView() {
+        //System.out.println("TOKEN " + TOKEN);
         _fridgeButton = findViewById(R.id.fridgeButton);
         _recipesButton = findViewById(R.id.recipeButton);
         _profileButton = findViewById(R.id.profileButton);

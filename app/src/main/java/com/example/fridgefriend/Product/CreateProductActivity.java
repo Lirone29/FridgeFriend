@@ -112,7 +112,7 @@ public class CreateProductActivity extends AppCompatActivity {
         System.out.println(calories);
         PostProduct postProduct = new PostProduct(name, weight, calories, dateOfExpiration);
 
-        Call<PostProduct> call = productApi.createPost("12fe059e10a0b4abb78291c572df64bad29bc981", postProduct);
+        Call<PostProduct> call = productApi.createPost(TOKEN, postProduct);
 
         call.enqueue(new Callback<PostProduct>() {
             @Override
