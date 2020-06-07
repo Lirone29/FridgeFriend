@@ -7,6 +7,11 @@ import android.os.StrictMode;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fridgefriend.Authorization.LoginActivity;
+import com.example.fridgefriend.Model.Product;
+import com.example.fridgefriend.Recipe.RecipeActivity;
+import com.example.fridgefriend.Recipe.RecipeByIdActivity;
+
 public class WelcomeActivity extends AppCompatActivity {
     private static int TIME_OUT = 1500;
     private static final String TAG = "WelcomeActivity";
@@ -26,7 +31,7 @@ public class WelcomeActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
+                Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.xml.fade_in,R.xml.fade_out);
                 finish();
