@@ -43,12 +43,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        //System.out.println("TOKEN " + TOKEN);
+
         _fridgeButton = findViewById(R.id.fridgeButton);
         _recipesButton = findViewById(R.id.recipeButton);
         _profileButton = findViewById(R.id.profileButton);
         _archieveShoppinListButton = findViewById(R.id.shoppingArchiveButton);
-        _createShoppinListButton = (FloatingActionButton) findViewById(R.id.createShoppingListButton);
 
         _fridgeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,16 +86,6 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra(TAG_TOKEN,TOKEN);
                 startActivityForResult(intent, 1);
                 finish();
-            }
-        });
-
-        _createShoppinListButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Intent intent = new Intent(getApplicationContext(), FridgeActivity.class);
-                //intent.putExtra(TAG_TOKEN,TOKEN);
-                //startActivityForResult(intent, 1);
-                //finish();
             }
         });
 
