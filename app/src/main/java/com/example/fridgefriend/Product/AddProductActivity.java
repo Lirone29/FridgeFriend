@@ -16,6 +16,8 @@ import com.example.fridgefriend.Data.Dialog;
 import com.example.fridgefriend.FridgeActivity;
 import com.example.fridgefriend.Model.Product;
 import com.example.fridgefriend.R;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,15 +30,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AddProductActivity extends AppCompatActivity {
 
-    private static final String TAG_ID = "id";
     private static final String TAG_TOKEN = "TOKEN";
+    private static final String contentType = "application/json";
     String TOKEN = "";
-    //String TOKEN = "8cbb6cf9bca1a0bc324c64a97fea2a3bc748b962";
-
     private String urlString = "http://mtx.pmlabs.net:8888/";
 
+
     //components
-    //private RecyclerView _recyclerView;
     private TextView _searchProductTextView;
     private Button _searchButton;
     private Button _returnButton;
@@ -93,7 +93,6 @@ public class AddProductActivity extends AppCompatActivity {
 
         _recyclerView =  (RecyclerView) findViewById(R.id.addProductRecycleView);
         _recyclerView.setHasFixedSize(true);
-
         _recycleViewLayoutManager = new LinearLayoutManager(this);
         _recyclerView.setEnabled(true);
         _recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
@@ -162,7 +161,6 @@ public class AddProductActivity extends AppCompatActivity {
 
                 productsArrayList.clear();
                 productsArrayList.add(product);
-
                 _recycleViewAdapter.removeItems();
                 _recycleViewAdapter.addAllItems( productsArrayList);
 
@@ -178,57 +176,43 @@ public class AddProductActivity extends AppCompatActivity {
     }
 
     public void chooseProduct(int _id){
-
-        //System.out.println("IN choose id " + _id);
         addProductToFridge(String.valueOf(_id));
-
-        //Intent intent = new Intent(getApplicationContext(), ProductsActivity.class);
-        //intent.putExtra(TAG_TOKEN,TOKEN);
-        //startActivity(intent);
-        //finish();
-
     }
 
     public void addProductToFridge(String id){
 
-        String contentType = "application/json";
-        System.out.println("TOKEN " + TOKEN);
-        Call<PostProduct> call = productApi.addProductToFridge(contentType, TOKEN, id);
-        call.enqueue(new Callback<PostProduct>() {
+        AddProduct addProduct = new AddProduct(Integer.valueOf(id));
+        Call<AddProduct> call = productApi.addProductToFridge(contentType, "TOKEN " + TOKEN, addProduct);
+        call.enqueue(new Callback<AddProduct>() {
             @Override
-            public void onResponse(Call<PostProduct> call, Response<PostProduct> response) {
+            public void onResponse(Call<AddProduct> call, Response<AddProduct> response) {
 
                 if (!response.isSuccessful()) {
                     _searchProductTextView.setText("Code: " + response.code());
                     return;
                 }
 
-                System.out.println("Code: " + String.valueOf(response.code()));
-                PostProduct product = response.body();
+                System.out.println("Code: " + String.valueOf(response.body()));
                 Log.d("Respone: ", "" +response.isSuccessful());
-                Log.d("Respone: ", "" +response.body());
                 Log.d("Respone: ", "" +response.headers().toString());
                 openDialog();
 
             }
 
             @Override
-            public void onFailure(Call<PostProduct> call, Throwable t) {
+            public void onFailure(Call<AddProduct> call, Throwable t) {
                 _searchProductTextView.setText(t.getMessage());
             }
         });
     }
 
     public void searchProduct(){
-
         String productText = _searchProductTextView.getText().toString();
         for(int i = 0 ; i < productsArrayList.size(); i++){
             if(productsArrayList.get(i).getName().equals(productText)) {
-                //Log.d("Indeks of kuczak ", String.valueOf(i+1));
                 getProductsById(i+1);
             }
         }
-
     }
 
     public void returnButton(){

@@ -1,9 +1,10 @@
 package com.example.fridgefriend.Product;
 
 import com.example.fridgefriend.Model.Product;
-import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
-import java.util.ArrayList;
+import org.json.JSONArray;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -38,15 +39,13 @@ public interface IProduct {
 
     //good
     @POST("api/products-in-fridge/")
-    Call<PostProduct> addProductToFridge(@Header("Content-Type")String contentType, @Header("Token") String token, @Body String postId);
-
-    //@FormUrlEncoded
-    //@POST("api/products-in-fridge/")
-    //Call<String> addProductToFridgeString(@Header("Content-Type")String contentType, @Header("Token") String token, @Field("product_id") String postId);
-
-    @FormUrlEncoded
     @Headers({"Content-Type: application/json"})
+    Call<AddProduct> addProductToFridge(@Header("Content-Type")String contentType, @Header("Authorization") String token, @Body AddProduct addProduct);
+
+   //good
     @POST("api/products-in-fridge/")
-    Call<Object> removeProductFromFridge(@Header("Content-Type")String contentType, @Header("Token") String token, @Field("product_in_fridge_id") String postId);
+    @Headers({"Content-Type: application/json"})
+    Call<RemoveProduct> removeProductFromFridge(@Header("Content-Type")String contentType, @Header("Authorization") String token, @Body RemoveProduct removeProduct);
+
 
 }

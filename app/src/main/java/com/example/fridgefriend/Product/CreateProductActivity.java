@@ -49,11 +49,6 @@ public class CreateProductActivity extends AppCompatActivity {
     int dateOfExpiration;
     int calories;
 
-    //components
-    RecyclerView _recyclerView;
-    FridgeProductAdapter _recycleViewAdapter;
-    RecyclerView.LayoutManager _recycleViewLayoutManager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,7 +124,6 @@ public class CreateProductActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<PostProduct> call, Throwable t) {
-                //textViewResult.setText(t.getMessage());
                 System.out.println("Error: " + t.getMessage());
             }
         });

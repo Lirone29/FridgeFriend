@@ -20,10 +20,10 @@ import com.example.fridgefriend.Product.AddProductActivity;
 import com.example.fridgefriend.Product.CreateProductActivity;
 import com.example.fridgefriend.Product.IProduct;
 import com.example.fridgefriend.Product.OnFridgeProductClickListener;
-import com.example.fridgefriend.Product.OnProductClikListener;
+import com.example.fridgefriend.Product.RemoveProduct;
+import com.google.gson.JsonObject;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -116,7 +116,7 @@ public class FridgeActivity extends AppCompatActivity {
         _recycleViewAdapter = new FridgeProductAdapter(viewList, new OnFridgeProductClickListener() {
             @Override
             public void onItemClick(FridgeProduct item) {
-                removeProduct(String.valueOf(item.getFridgeId()),viewList.indexOf(item));
+                removeProduct(item.getFridgeId(),viewList.indexOf(item));
             }
         });
 
@@ -142,20 +142,22 @@ public class FridgeActivity extends AppCompatActivity {
         //finish();
     }
 
-    private void removeProduct(String product_id, int position){
+    private void removeProduct(int fridge_id, int position){
 
-        Call<Object> call = productApi.removeProductFromFridge(contentType, "Token " + TOKEN, product_id);
-        call.enqueue(new Callback<Object>() {
+
+        RemoveProduct removeProduct = new RemoveProduct(fridge_id);
+        Call<RemoveProduct> call = productApi.removeProductFromFridge(contentType, "TOKEN " +TOKEN, removeProduct);
+        call.enqueue(new Callback<RemoveProduct>() {
             @Override
-            public void onResponse(Call<Object> call, Response<Object> response) {
+            public void onResponse(Call<RemoveProduct> call, Response<RemoveProduct> response) {
                 if(!response.isSuccessful()){
                     Log.d("Code: ", "" +String.valueOf(response.code()));
                     return;
                 }
 
                 System.out.println("Code: " + response.code());
+                System.out.println("Code: " + response.headers());
                 System.out.println("Code: " + response.body());
-
 
                 viewList.remove(position);
                 _recycleViewAdapter.notifyDataSetChanged();
@@ -164,7 +166,7 @@ public class FridgeActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Object> call, Throwable t) {
+            public void onFailure(Call<RemoveProduct> call, Throwable t) {
                 Log.d("Failure: ", "" +t.getMessage());
             }
         });
@@ -197,15 +199,12 @@ public class FridgeActivity extends AppCompatActivity {
                     removed = productsFridgeArrayList.get(j).getRemoved();
                     dateAdded = productsFridgeArrayList.get(j).getDateAdded();
                     LocalDate date2 = LocalDate.parse(dateAdded);
-                    daysToExpire = ChronoUnit.DAYS.between(LocalDate.now(), date2);
-                    System.out.println("Name " + productsArrayList.get(i).name);
-                    //System.out.println("Days to expire " + daysToExpire);
+                    daysToExpire = productsArrayList.get(i).daysToExpire - ChronoUnit.DAYS.between(LocalDate.now(), date2);
                     viewList.add(new FridgeProduct(productsArrayList.get(i).name, (int) daysToExpire, fridgeId,userId,productId,dateAdded, removed));
                 }
             }
         }
         _recycleViewAdapter.notifyDataSetChanged();
-        //_recycleViewAdapter.addAllItems();
     }
 
     private void loadFridgeProducts(){
