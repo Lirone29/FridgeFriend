@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/menubackground"
     android:foregroundGravity="center"
     android:orientation="vertical">
 
@@ -41,7 +42,7 @@
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="12dp"
             android:layout_toRightOf="@id/fridgeButton"
-            android:text="Shopping Archive" />
+            android:text="Shopping List" />
 
         <Button
             android:id="@+id/recipeButton"
