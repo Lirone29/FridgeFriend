@@ -7,20 +7,14 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.fridgefriend.Authorization.ProfileActivity;
-import com.example.fridgefriend.Product.AddProductActivity;
+import com.example.fridgefriend.Authorization.LoginActivity;
 import com.example.fridgefriend.Recipe.RecipeActivity;
-import com.example.fridgefriend.Recipe.AddRecipeActivity;
-import com.example.fridgefriend.Recipe.RecipeActivity;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static final String TAG_TOKEN = "TOKEN";
     private static final int USER_ACTION = 3;
     String TOKEN;
-    //String TOKEN = "eefac50b05cc5afceeb815a5994fd5153cd8f9b9";
 
     private String urlString = "http://mtx.pmlabs.net:8888/";
 
@@ -28,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
     Button _recipesButton;
     Button _profileButton;
     Button _archieveShoppinListButton;
-    FloatingActionButton _createShoppinListButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,8 +65,7 @@ public class MainActivity extends AppCompatActivity {
         _profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
-                intent.putExtra(TAG_TOKEN,TOKEN);
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivityForResult(intent, USER_ACTION);
                 finish();
             }

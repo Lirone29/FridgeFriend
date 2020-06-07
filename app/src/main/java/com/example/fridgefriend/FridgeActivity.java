@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fridgefriend.Data.Dialog;
 import com.example.fridgefriend.Model.FridgeProduct;
 import com.example.fridgefriend.Product.FridgeProductAdapter;
 import com.example.fridgefriend.Product.FridgeProductResponse;
@@ -115,7 +116,7 @@ public class FridgeActivity extends AppCompatActivity {
         _recycleViewAdapter = new FridgeProductAdapter(viewList, new OnFridgeProductClickListener() {
             @Override
             public void onItemClick(FridgeProduct item) {
-
+                removeProduct(String.valueOf(item.getFridgeId()),viewList.indexOf(item));
             }
         });
 
@@ -131,7 +132,7 @@ public class FridgeActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), AddProductActivity.class);
         intent.putExtra(TAG_TOKEN, TOKEN);
         startActivityForResult(intent, 1);
-        //finish();
+        finish();
     }
 
     private void createProduct(){
@@ -143,27 +144,27 @@ public class FridgeActivity extends AppCompatActivity {
 
     private void removeProduct(String product_id, int position){
 
-        Call<String> call = productApi.removeProductFromFridge(TOKEN, product_id);
-        call.enqueue(new Callback<String>() {
+        Call<Object> call = productApi.removeProductFromFridge(contentType, "Token " + TOKEN, product_id);
+        call.enqueue(new Callback<Object>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
+            public void onResponse(Call<Object> call, Response<Object> response) {
                 if(!response.isSuccessful()){
                     Log.d("Code: ", "" +String.valueOf(response.code()));
                     return;
                 }
 
                 System.out.println("Code: " + response.code());
+                System.out.println("Code: " + response.body());
 
-                //responseList.remove()
-                //List<Product> tmp = response.body();
-                //productsArrayList = (ArrayList<Product>) tmp;
-                //_recycleViewAdapter.addAllItems(productsArrayList);
 
-                //responseList = response.body();
+                viewList.remove(position);
+                _recycleViewAdapter.notifyDataSetChanged();
+                //_recycleViewAdapter.addAllItems(viewList);
+                openDialog();
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
+            public void onFailure(Call<Object> call, Throwable t) {
                 Log.d("Failure: ", "" +t.getMessage());
             }
         });
@@ -179,40 +180,32 @@ public class FridgeActivity extends AppCompatActivity {
     }
 
     private void addItemsToView(){
-        String name;
         long daysToExpire;
-
         int fridgeId;
         String userId;
         String productId;
-
         String dateAdded;
         String removed;
 
         for(int j = 0 ; j < productsFridgeArrayList.size(); j++) {
+            System.out.println("Product " + j);
             for (int i = 0; i < productsArrayList.size(); i++) {
-                //System.out.println("Fridge Product ID " + productsFridgeArrayList.get(j).getProduct());
-                //System.out.println("Product ID " + productsArrayList.get(i).getId());
                 if (Integer.valueOf(productsFridgeArrayList.get(j).getProduct()) == productsArrayList.get(i).getId()) {
-                    System.out.println(productsArrayList.get(i).name);
-                    name = productsArrayList.get(i).name;
                     fridgeId = Integer.valueOf(productsFridgeArrayList.get(j).getId());
                     userId = productsFridgeArrayList.get(j).getUser();
                     productId = productsFridgeArrayList.get(j).getProduct();
                     removed = productsFridgeArrayList.get(j).getRemoved();
                     dateAdded = productsFridgeArrayList.get(j).getDateAdded();
-                    //String today = dtf.format(LocalDateTime.now());
-                    LocalDate date1  = LocalDate.now();
-                    System.out.println(dateAdded);
                     LocalDate date2 = LocalDate.parse(dateAdded);
-                    daysToExpire = ChronoUnit.DAYS.between(date1, date2);
-                    System.out.println("Days to expire " + daysToExpire);
-                    FridgeProduct fridgeProduct = new FridgeProduct(name, (int) daysToExpire, fridgeId,userId,productId,dateAdded, removed);
-                    viewList.add(fridgeProduct);
+                    daysToExpire = ChronoUnit.DAYS.between(LocalDate.now(), date2);
+                    System.out.println("Name " + productsArrayList.get(i).name);
+                    //System.out.println("Days to expire " + daysToExpire);
+                    viewList.add(new FridgeProduct(productsArrayList.get(i).name, (int) daysToExpire, fridgeId,userId,productId,dateAdded, removed));
                 }
             }
         }
-        _recycleViewAdapter.addAllItems(viewList);
+        _recycleViewAdapter.notifyDataSetChanged();
+        //_recycleViewAdapter.addAllItems();
     }
 
     private void loadFridgeProducts(){
@@ -281,4 +274,10 @@ public class FridgeActivity extends AppCompatActivity {
         startActivityForResult(intent, 1);
         finish();
     }
+
+    private void openDialog() {
+        Dialog dialog = new Dialog();
+        dialog.show(getSupportFragmentManager(), "dialog");
+    }
+
 }

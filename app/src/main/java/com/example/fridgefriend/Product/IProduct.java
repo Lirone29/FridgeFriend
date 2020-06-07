@@ -47,6 +47,6 @@ public interface IProduct {
     @FormUrlEncoded
     @Headers({"Content-Type: application/json"})
     @POST("api/products-in-fridge/")
-    Call<String> removeProductFromFridge(@Header("Token") String token, @Path("product_in_fridge_id") String postId);
+    Call<Object> removeProductFromFridge(@Header("Content-Type")String contentType, @Header("Token") String token, @Field("product_in_fridge_id") String postId);
 
 }

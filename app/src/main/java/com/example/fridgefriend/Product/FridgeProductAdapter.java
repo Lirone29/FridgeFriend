@@ -26,9 +26,13 @@ public class FridgeProductAdapter extends RecyclerView.Adapter<FridgeProductAdap
     }
 
 
-
     public void addAllItems(ArrayList<FridgeProduct> items) {
         mProductItemList.addAll(items);
+        notifyDataSetChanged();
+    }
+
+    public void removeItem(int position) {
+        mProductItemList.remove(position);
         notifyDataSetChanged();
     }
 

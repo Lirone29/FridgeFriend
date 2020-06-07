@@ -48,4 +48,44 @@ public class FridgeProduct {
     public void setDaysToExpire(int daysToExpire) {
         this.daysToExpire = daysToExpire;
     }
+
+    public int getFridgeId() {
+        return fridgeId;
+    }
+
+    public void setFridgeId(int fridgeId) {
+        this.fridgeId = fridgeId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public String getDateAdded() {
+        return dateAdded;
+    }
+
+    public void setDateAdded(String dateAdded) {
+        this.dateAdded = dateAdded;
+    }
+
+    public String getRemoved() {
+        return removed;
+    }
+
+    public void setRemoved(String removed) {
+        this.removed = removed;
+    }
 }
