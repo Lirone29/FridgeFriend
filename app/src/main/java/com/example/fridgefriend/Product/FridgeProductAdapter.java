@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fridgefriend.Model.FridgeProduct;
 import com.example.fridgefriend.Model.Product;
 import com.example.fridgefriend.R;
 
@@ -15,18 +16,18 @@ import java.util.ArrayList;
 
 public class FridgeProductAdapter extends RecyclerView.Adapter<FridgeProductAdapter.FridgeProductViewHolder>{
 
-    private ArrayList<Product> mProductItemList;
-    private final OnProductClikListener mlistener;
+    private ArrayList<FridgeProduct> mProductItemList;
+    private final OnFridgeProductClickListener mlistener;
 
 
-    public FridgeProductAdapter (ArrayList<Product> productItemList, OnProductClikListener listener){
+    public FridgeProductAdapter (ArrayList<FridgeProduct> productItemList, OnFridgeProductClickListener listener){
         mProductItemList = productItemList;
         mlistener = listener;
     }
 
 
 
-    public void addAllItems(ArrayList<Product> items) {
+    public void addAllItems(ArrayList<FridgeProduct> items) {
         mProductItemList.addAll(items);
         notifyDataSetChanged();
     }
@@ -48,7 +49,7 @@ public class FridgeProductAdapter extends RecyclerView.Adapter<FridgeProductAdap
     public void onBindViewHolder(@NonNull FridgeProductAdapter.FridgeProductViewHolder holder, int position) {
         holder.bind(mProductItemList.get(position),mlistener);
 
-        Product product = mProductItemList.get(position);
+        FridgeProduct product = mProductItemList.get(position);
         holder._productName.setText("" + product.getName());
         if(product.getDaysToExpire()>=2)
         holder. _productDayToExpire .setText("Day to expire: " +  product.getDaysToExpire());
@@ -77,7 +78,7 @@ public class FridgeProductAdapter extends RecyclerView.Adapter<FridgeProductAdap
             _productName = itemView.findViewById(R.id.fridgeProductName);
             _productDayToExpire = itemView.findViewById(R.id.fridgeProductExpirationDate);
         }
-        public void bind(final Product item, final OnProductClikListener listener) {
+        public void bind(final FridgeProduct item, final OnFridgeProductClickListener listener) {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
                     listener.onItemClick(item);
